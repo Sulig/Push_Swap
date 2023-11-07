@@ -20,5 +20,5 @@ deberás probar a utilizar varios tipos de algoritmos y elegir la solución más
 !!WORK IN PROGRESS!!
 
 ***
-~ Made by sadoming ~ Started on: 07/11_16:45 
+~ Made by sadoming ~ ~ Started on: 07/11
 ***
