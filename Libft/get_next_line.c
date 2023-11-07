@@ -66,7 +66,7 @@ static char	*get_readed(int fd, char *store)
 		if (btrd > 0)
 		{
 			tmp[btrd] = '\0';
-			store = ft_strjoin(store, tmp);
+			store = ft_strjoin_free_first(store, tmp);
 			if (!store)
 				return (gnl_free(store, tmp));
 		}
