@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/07 17:48:10 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/07 20:42:45 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,11 @@ NAME = push_swap
 # Flags:
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -I
+CFLAGS = -Wall -Wextra -Werror -g
 # ------------------ #
 # Directories:
 
 DIR = ./src
-DIRB = ./bonus
-
-#TEST = ./Tests
 LIBFT = ./Libft
 # ------------------- #
 # Sorces:
@@ -31,13 +28,13 @@ MAK = Makefile
 
 ARL = $(LIBFT)/libft.a
 
-LIB = #
-SRC = #
-#OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
+LIB = push_swap.h
+SRC = push_swap_main
+
+OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 # ******************************************************************************* #
 #-------------------------------------------------------------#
 all: $(NAME)
-
 #-------------------------------------------------------------#
 #-------------------------------------------------------------#
 help:
@@ -52,7 +49,7 @@ help:
 	@echo "\t~ re   \t\t #-> Redo so_long\n"
 	@echo "\t~ re_trueall \t #-> Redo & make trueall\n"
 	@echo "\n~ Extra comands:\n"
-	@echo "\t~ debug \t #-> Ejecutes lldb $(NAME) $(MAP)\n"
+	@echo "\t~ debug \t #-> Ejecutes lldb $(NAME) \n"
 	@echo "\t~ leaks \t #-> Ejecutes leaks $(NAME) \n"
 	@echo "\t~ val  \t\t #-> Run Valgrind $(NAME) \n"
 	@make -s author
@@ -95,14 +92,14 @@ $(ARL):
 	@make -s -C $(LIBFT)
 	@echo "\033[1;37m\n~ **************************************** ~\n"
 
-$(DIR)/%.o : $(DIR)/%.c ./src/$(LIB)
+$(DIR)/%.o: $(DIR)/%.c $(DIR)/$(LIB)
 	$(CC) $(CFLAGS) -c $<
 
 #-------------------------------------------------------------#
 $(NAME): $(MAK) $(ARL) $(OBJ)
 	@echo "\033[1;37m\n~ **************************************** ~\n"
-	@echo "\033[1;93m * Making so_long -->\033[1;97m\n"
-	@$(CC) $(ARL) $(OBJ) -L -o $(NAME)
+	@echo "\033[1;93m * Making $(NAME) -->\033[1;97m\n"
+	@$(CC) $(ARL) $(OBJ) -o $(NAME)
 	@echo "\033[1;35m\n~ **************************************** ~\n"
 	@echo "  ~\t     Push_Swap is ready!\t\t ~\n"
 	@echo "~ **************************************** ~\n"
