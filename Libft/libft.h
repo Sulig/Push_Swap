@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:27:16 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 14:22:06 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:18:50 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ size_t	ft_cnttoch_out(const char *str, char c);
 size_t	ft_numlen(size_t n, int base);
 
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	*ft_itoa_unsig(size_t n, char *base);
 char	*ft_unsig_tobase(size_t num, char base);

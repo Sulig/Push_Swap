@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:22:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 14:28:04 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/08 20:46:02 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,28 @@ int	ft_check_digit(char *str)
 		cnt++;
 	}
 	return (1);
+}
+
+int	ft_check_max(char **arr)
+{
+	size_t	cnt;
+	long	act;
+
+	cnt = 0;
+	while (arr[cnt])
+	{
+		act = ft_atol(arr[cnt]);
+		if (act < -2147483648 || act > 2147483647)
+		{
+			ft_printf("Error\n");
+			return (0);
+		}
+		cnt++;
+	}
+	return (1);
+}
+
+int	ft_check_double(int *stack, size_t len)
+{
+	
 }

@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_man_stacks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 20:32:02 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/08 20:24:39 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/08 20:31:55 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "../Libft/libft.h"
+void	*ft_free_stack(int *stack)
+{
+	free(stack);
+	return (NULL);
+}
 
-int		ft_check_digit(char *str);
-int		ft_check_max(char **arr);
+int	*ft_create_stack(char **arr)
+{
+	int		*stack;
+	size_t	cnt;
 
-int		*ft_create_stack(char **arr);
-void	*ft_free_stack(int *stack);
-
-#endif
+	cnt = 0;
+	stack = ft_calloc(sizeof(int), ft_arr_strlen(arr) + 1);
+	if (!stack)
+		return (NULL);
+	while (arr[cnt])
+	{
+		stack[cnt] = ft_atoi(arr[cnt]);
+		cnt++;
+	}
+	return (stack);
+}
