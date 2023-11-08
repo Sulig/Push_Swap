@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:57:19 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/07 19:03:23 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:03:37 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	ft_atoi(const char *str)
 	int		sign;
 	int		find;
 
-	find = 0;
+	find = '\0';
 	cnt = -1;
 	sign = 1;
 	while (str[++cnt] < 33)
 		if ((str[cnt] < 9 || str[cnt] > 13) && str[cnt] != ' ')
-			return (0);
+			return ('\0');
 	if (str[cnt] == '-' || str[cnt] == '+')
 	{
 		if (str[cnt] == '-')

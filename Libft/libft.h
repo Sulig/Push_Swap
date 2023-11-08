@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:27:16 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/07 19:09:55 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:22:06 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ int		ft_putstr(char *str);
 int		ft_putunsig(size_t nbr, char cast);
 int		ft_printf(char const *str, ...);
 
+size_t	ft_arr_strlen(char **s);
 size_t	ft_strlen(const char *s);
 size_t	ft_strllen(const char *s);
 size_t	ft_cnttoch_in(const char *str, char c);
 size_t	ft_cnttoch_out(const char *str, char c);
 size_t	ft_numlen(size_t n, int base);
-
-int		ft_isdigit(int c);
 
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
@@ -56,6 +55,7 @@ char	*ft_strdup(const char *s1);
 char	*ft_strcpyl(const char *s1, size_t len);
 char	*ft_strinter(const char *str, const char *inter, size_t pos);
 char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_strjoin_s(const char *s1, const char *s2);
 char	*ft_strjoin_free_first(char *s1, const char *s2);
 char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(const char*s, unsigned int start, size_t len);

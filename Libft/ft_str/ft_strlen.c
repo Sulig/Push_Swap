@@ -6,18 +6,28 @@
 /*   By: sadoming <sadoming@student.42barc...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:15:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/09/28 19:16:30 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/08 13:56:35 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+
+size_t	ft_arr_strlen(char **s)
+{
+	size_t	counter;
+
+	counter = 0;
+	while (s[counter])
+		counter++;
+	return (counter);
+}
 
 size_t	ft_strlen(const char *s)
 {
 	size_t	counter;
 
 	counter = 0;
-	while (s[counter] != '\0')
+	while (s[counter])
 		counter++;
 	return (counter);
 }
@@ -29,7 +39,7 @@ size_t	ft_strllen(const char *s)
 	counter = 0;
 	if (!s)
 		return (0);
-	while (s[counter] != '\0')
+	while (s[counter])
 		counter++;
 	return (counter);
 }

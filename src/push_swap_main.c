@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/07 20:32:52 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/08 14:31:02 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ static char	*ft_arr_str_to_arr_chr(char **arr)
 
 	cnt = 2;
 	join = NULL;
-	join = ft_strjoin(arr[1], join);
+	join = ft_strjoin_s(arr[1], join);
 	while (arr[cnt])
 	{
+		join = ft_strjoin_free_first(join, " ");
 		join = ft_strjoin_free_first(join, arr[cnt]);
 		cnt++;
 	}
@@ -30,17 +31,31 @@ static char	*ft_arr_str_to_arr_chr(char **arr)
 
 int	main(int argc, char **args)
 {
+	char	**arr;
 	char	*join;
+	int		ok;
 
+	ok = 0;
 	if (argc > 1)
 	{
 		join = ft_arr_str_to_arr_chr(args);
 		if (join)
 		{
-			ft_printf("%s\n", join);
+			if (ft_check_digit(join))
+				ok = 1;
+			if (ok)
+			{
+				arr = ft_split(join, ' ');
+				if (arr)
+				{
+					ft_printf("%s\n", join);
+					arr = ft_free_arr(ft_arr_strlen(arr), arr);
+				}
+			}
+			else
+				ft_printf("Error\n");
 			free(join);
 		}
 	}
-	join = NULL;
 	return (0);
 }

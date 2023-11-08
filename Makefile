@@ -6,11 +6,13 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/07 20:42:45 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/08 13:58:05 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+
+DEF = 1 2
 # ------------------ #
 # Flags:
 
@@ -29,9 +31,9 @@ MAK = Makefile
 ARL = $(LIBFT)/libft.a
 
 LIB = push_swap.h
-SRC = push_swap_main
+SRC = push_swap_main ft_check_errors
 
-OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
+OBJ = $(addprefix src/, $(addsuffix .o, $(SRC)))
 # ******************************************************************************* #
 #-------------------------------------------------------------#
 all: $(NAME)
@@ -44,14 +46,14 @@ help:
 	@echo "\t~ fclean \t #-> Clean all\n"
 	@echo "\t~ clear \t #-> Clean all & clear\n"
 	@echo "\t~ norm \t\t #-> Run norminette\n"
-	@echo "\t~ trueall \t #-> Make norm + make all\n"
-	@echo "\t~ run  \t\t #-> Run so_long with $(MAP)\n"
-	@echo "\t~ re   \t\t #-> Redo so_long\n"
+	@echo "\t~ trueall \t #-> Make norm + make all + make run\n"
+	@echo "\t~ run  \t\t #-> Run $(NAME) with $(DEF)\n"
+	@echo "\t~ re   \t\t #-> Redo $(NAME)\n"
 	@echo "\t~ re_trueall \t #-> Redo & make trueall\n"
 	@echo "\n~ Extra comands:\n"
-	@echo "\t~ debug \t #-> Ejecutes lldb $(NAME) \n"
-	@echo "\t~ leaks \t #-> Ejecutes leaks $(NAME) \n"
-	@echo "\t~ val  \t\t #-> Run Valgrind $(NAME) \n"
+	@echo "\t~ debug \t #-> Ejecutes lldb $(NAME) $(DEF)\n"
+	@echo "\t~ leaks \t #-> Ejecutes leaks $(NAME) $(DEF)\n"
+	@echo "\t~ val  \t\t #-> Run Valgrind $(NAME) $(DEF)\n"
 	@make -s author
 
 #-------------------------------------------------------------#
@@ -66,6 +68,7 @@ trueall:
 	@make -s norm
 	@echo "\033[0;37m\n~ **************************************** ~\n"
 	@make -s $(NAME)
+	@make -s run
 
 #-------------------------------------------------------------#
 norm:
@@ -79,9 +82,9 @@ norm:
 #-------------------------------------------------------------#
 run: $(NAME)
 	@echo "\033[1;34m\n~ **************************************** ~\n"
-	@echo " ~ Running ./$(NAME) "
+	@echo " ~ Running ./$(NAME) $(DEF)"
 	@echo "\n~ **************************************** ~\n"
-	@./$(NAME) 
+	@./$(NAME) $(DEF)
 #-------------------------------------------------------------#
 #-------------------------------------------------------------#
 # ******************************************************************************* #
@@ -92,8 +95,8 @@ $(ARL):
 	@make -s -C $(LIBFT)
 	@echo "\033[1;37m\n~ **************************************** ~\n"
 
-$(DIR)/%.o: $(DIR)/%.c $(DIR)/$(LIB)
-	$(CC) $(CFLAGS) -c $<
+$(DIR)/%.o: $(DIR)/%.c $(DIR)/$(LIB) $(MAK)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 #-------------------------------------------------------------#
 $(NAME): $(MAK) $(ARL) $(OBJ)
@@ -101,7 +104,7 @@ $(NAME): $(MAK) $(ARL) $(OBJ)
 	@echo "\033[1;93m * Making $(NAME) -->\033[1;97m\n"
 	@$(CC) $(ARL) $(OBJ) -o $(NAME)
 	@echo "\033[1;35m\n~ **************************************** ~\n"
-	@echo "  ~\t     Push_Swap is ready!\t\t ~\n"
+	@echo "  ~\t    Push_Swap is ready!\t         ~\n"
 	@echo "~ **************************************** ~\n"
 #-------------------------------------------------------------#
 # ******************************************************************************* #
@@ -109,23 +112,23 @@ $(NAME): $(MAK) $(ARL) $(OBJ)
 
 debug: $(NAME)
 	@echo "\033[1;34m\n~ **************************************** ~\n"
-	@echo " ~ Running ./$(NAME) "
+	@echo " ~ Running ./$(NAME) $(DEF)"
 	@echo "\n~ **************************************** ~\n"
-	@lldb $(NAME) 
+	@lldb $(NAME) $(DEF)
 # ------------------
 
 leaks: $(NAME)
 	@echo "\033[1;34m\n~ **************************************** ~\n"
-	@echo " ~ Running ./$(NAME) $(MAP)"
+	@echo " ~ Running ./$(NAME) $(DEF)"
 	@echo "\n~ **************************************** ~\n"
-	@leaks -atExit -- ./$(NAME) $(MAP)
+	@leaks -atExit -- ./$(NAME) $(DEF)
 # ------------------
 
 val: $(NAME)
 	@echo "\033[1;34m\n~ **************************************** ~\n"
-	@echo " ~ Running ./$(NAME) $(MAP)"
+	@echo " ~ Running ./$(NAME) $(DEF)"
 	@echo "\n~ **************************************** ~\n"
-	@valgrind ./$(NAME) $(MAP)
+	@valgrind ./$(NAME) $(DEF)
 
 # ********************************************************************************* #
 # Clean region
