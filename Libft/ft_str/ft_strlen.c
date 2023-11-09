@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barc...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:15:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 13:56:35 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:29:15 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_arr_strlen(char **s)
 	size_t	counter;
 
 	counter = 0;
+	if (!s)
+		return (0);
 	while (s[counter])
 		counter++;
 	return (counter);
