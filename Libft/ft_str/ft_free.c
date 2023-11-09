@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_man_stacks.c                                    :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 20:24:39 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 20:31:55 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/09 17:30:11 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/09 17:37:00 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../libft.h"
 
-void	*ft_free_stack(int *stack)
+void	*ft_auto_free_arr(char **arr)
 {
-	free(stack);
+	size_t	size;
+
+	size = ft_arr_strlen(arr);
+	while (size--)
+		free(arr[size]);
+	free(arr);
+	arr = NULL;
 	return (NULL);
 }
 
-int	*ft_create_stack(char **arr)
+void	*ft_free_str(char *str)
 {
-	int		*stack;
-	size_t	cnt;
-
-	cnt = 0;
-	stack = ft_calloc(sizeof(int), ft_arr_strlen(arr) + 1);
-	if (!stack)
-		return (NULL);
-	while (arr[cnt])
-	{
-		stack[cnt] = ft_atoi(arr[cnt]);
-		cnt++;
-	}
-	return (stack);
+	free(str);
+	str = NULL;
+	return (NULL);
 }

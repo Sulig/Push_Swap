@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/09 17:52:51 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/09 17:30:11 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/09 17:36:29 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "../libft.h"
 
-# include "../Libft/libft.h"
+void	*ft_auto_free_arr(char **arr)
+{
+	size_t	size;
 
-int		ft_check_digit(char *str);
-int		ft_check_max(char **arr);
-int		ft_check_double(char **stack);
+	size = ft_arr_strlen(arr);
+	while (size--)
+		free(arr[size]);
+	free(arr);
+	arr = NULL;
+	return (NULL);
+}
 
-#endif
+void	*ft_free_str(char *str)
+{
+	free(str);
+	str = NULL;
+	return (NULL);
+}

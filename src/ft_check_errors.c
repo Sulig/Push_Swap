@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:22:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 20:46:02 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:58:54 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,22 @@ static int	ft_is_acceptable(int c)
 int	ft_check_digit(char *str)
 {
 	size_t	cnt;
+	int		ok;
 
 	cnt = 0;
+	ok = 1;
 	while (str[cnt])
 	{
 		if (!ft_is_acceptable(str[cnt]))
-			return (0);
+			ok = 0;
 		else if (ft_is_acceptable(str[cnt]) == 2)
 			if (ft_is_acceptable(str[cnt + 1]) == 2)
-				return (0);
+				ok = 0;
 		cnt++;
 	}
-	return (1);
+	if (!ok)
+		ft_printf("Error\n");
+	return (ok);
 }
 
 int	ft_check_max(char **arr)
@@ -62,7 +66,30 @@ int	ft_check_max(char **arr)
 	return (1);
 }
 
-int	ft_check_double(int *stack, size_t len)
+int	ft_check_double(char **stack)
 {
-	
+	size_t	ln;
+	size_t	next;
+	int		st;
+	int		nx;
+	int		ok;
+
+	ok = 1;
+	ln = 0;
+	while (stack[ln])
+	{
+		st = ft_atoi(stack[ln]);
+		next = ln + 1;
+		while (stack[next])
+		{
+			nx = ft_atoi(stack[next]);
+			if (st == nx)
+				ok = 0;
+			next++;
+		}
+		ln++;
+	}
+	if (!ok)
+		ft_printf("Error\n");
+	return (ok);
 }

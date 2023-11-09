@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/08 20:34:30 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:54:21 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,54 +29,58 @@ static char	*ft_arr_str_to_arr_chr(char **arr)
 	return (join);
 }
 
-static char	**ft_do_arr(char **args)
+static char	*ft_check_dimax(char **args)
 {
-	char	**arr;
+	char	**stack;
 	char	*join;
+	int		ok;
 
-	arr = NULL;
+	ok = 1;
 	join = ft_arr_str_to_arr_chr(args);
 	if (!join)
-		return (NULL);
-	if (ft_check_digit(join))
+		return (0);
+	if (!ft_check_digit(join))
+		ok = 0;
+	stack = ft_split(join, ' ');
+	if (stack)
 	{
-		arr = ft_split(join, ' ');
-		if (arr)
-			if (!ft_check_max(arr))
-				arr = ft_free_arr(ft_arr_strlen(arr), arr);
+		if (!ft_check_max(stack))
+			ok = 0;
+		stack = ft_free_arr(ft_arr_strlen(stack), stack);
 	}
+	if (ok)
+		return (join);
 	else
-		ft_printf("Error\n");
-	free(join);
-	join = NULL;
-	return (arr);
+	{
+		free(join);
+		join = NULL;
+		return (NULL);
+	}
 }
 
 int	main(int argc, char **args)
 {
-	char	**arr;
-	int		*stack_a;
-	int		*stack_b;
+	char	**stack_a;
+	char	**stack_b;
+	char	*join;
 
-	if (argc > 1)
+	if (argc == 1)
+		ft_printf("Error\n");
+	join = ft_check_dimax(args);
+	if (join)
 	{
-		arr = ft_do_arr(args);
-		if (arr)
+		stack_a = ft_split(join, ' ');
 		{
-			stack_a = ft_create_stack(arr);
-			if (stack_a)
+			stack_b = ft_calloc(sizeof(char *), ft_arr_strlen(stack_a) + 1);
+			if (stack_b)
 			{
-				stack_b = ft_calloc(sizeof(int), ft_arr_strlen(arr) + 1);
-				if (stack_b)
-				{
-					ft_printf("For now is ok\n");
-					ft_printf("Call check_double && do prog\n");
-					stack_a = ft_free_stack(stack_a);
-					stack_b = ft_free_stack(stack_b);
-				}
+				if (ft_check_double(stack_a))
+					ft_printf("For now is ok, and now can call to push\n");
+				stack_b = ft_auto_free_arr(stack_b);
 			}
-			arr = ft_free_arr(ft_arr_strlen(arr), arr);
+			stack_a = ft_auto_free_arr(stack_a);
 		}
+		join = ft_free_str(join);
 	}
 	return (0);
 }

@@ -24,7 +24,7 @@ SRC = ft_atoi.c ft_calloc.c ft_itoa.c ft_printf.c ft_switch_cast.c get_next_line
 
 SRC += $(STR)ft_split.c $(STR)ft_strchr.c $(STR)ft_strcpy.c $(STR)ft_strjoin.c\
 	   $(STR)ft_strcut.c $(STR)ft_strlen.c $(STR)ft_strstr.c $(STR)ft_strtrim.c\
-	   $(STR)ft_substr.c $(STR)ft_strinter.c
+	   $(STR)ft_substr.c $(STR)ft_strinter.c $(STR)ft_free.c
 	
 OBJ = $(SRC:%.c=%.o)
 # ********************************************* #
@@ -46,8 +46,7 @@ norm:
 	@echo "\033[1;32m \nLibft norminette:\t~ OK\n"
 #-------------------------------------------------------------#
 clean:
-	@/bin/rm -f *.o
-	@/bin/rm -f $(STR)*.o
+	@/bin/rm -f $(OBJ)
 
 fclean : clean
 	@/bin/rm -f $(NAME)
