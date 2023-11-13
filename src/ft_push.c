@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:12:00 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/09 20:27:54 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/13 14:36:57 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,12 @@ char	**ft_rm_first(char **stack)
 	return (new);
 }
 
-char	**ft_push_b(char ***stack_a, char **stack_b)
+void	ft_push_b(char ***stack_a, char ***stack_b)
 {
 	if (ft_arr_strlen(*stack_a))
 	{
-		stack_b = ft_push(stack_b, *stack_a[0]);
+		*stack_b = ft_push(*stack_b, stack_a[0][0]);
 		*stack_a = ft_rm_first(*stack_a);
-		//ft_print_stat(stack_a, stack_b);
 		ft_printf("pb\n");
 	}
-	return (stack_b);
 }
