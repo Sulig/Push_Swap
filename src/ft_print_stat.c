@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:28:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/13 14:36:18 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/13 20:35:17 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@ void	ft_print_stack_cnt(char **stack)
 {
 	size_t	cnt;
 
-	cnt = -1;
+	cnt = 0;
 	if (!stack)
 		ft_printf("\n\033[1;31mNULL");
 	else
-		while (stack[cnt++])
+	{
+		while (stack[cnt])
+		{
 			ft_printf("[%u]: %s\t", cnt, stack[cnt]);
+			cnt++;
+		}
+	}
 	ft_printf("\033[1;37m\n");
 }
 
