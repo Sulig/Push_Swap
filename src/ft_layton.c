@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/14 20:09:44 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:28:47 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ void	ft_sort_tree(char **stack_a)
 	}
 }
 
+void	ft_sort_four(char **stack_a)
+{
+	size_t	min;
+	size_t	max;
+
+	min = ft_where_is_min(stack_a);
+	max = ft_where_is_max(stack_a);
+	if (max == 0 && min == 1)
+		ft_rotate_a(stack_a);
+	else if (max == 2 && min == 3)
+		ft_reverse_a(stack_a);
+}
+
 void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 {
 	size_t	len;
@@ -48,5 +61,7 @@ void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 		ft_swap_a(*stack_a);
 	else if (len == 3)
 		ft_sort_tree(*stack_a);
+	else if (len == 4)
+		ft_sort_four(*stack_a);
 	ft_printf("", stack_b);
 }
