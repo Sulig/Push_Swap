@@ -6,13 +6,13 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/14 14:03:54 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/14 19:55:04 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-DEF = 1 2 3
+DEF = 3 1 2
 # ------------------ #
 # Flags:
 
@@ -32,7 +32,7 @@ ARL = $(LIBFT)/libft.a
 
 LIB = push_swap.h
 SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
-	  ft_swap ft_utils
+	  ft_swap ft_utils ft_layton
 
 OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 # ******************************************************************************* #
@@ -76,6 +76,7 @@ norm:
 	@make -s norm -C $(LIBFT)
 	@echo "\n\033[1;93m~ Norminette:"
 	@norminette $(DIR)
+	@echo "\n~~~~~~~~~~~~~~~~~~~~~~\n"
 	@norminette -R CheckForbiddenSourceHeader $(DIR)
 	@echo "\033[1;32m\n ~ Norminette:\t~ OK"
 
@@ -84,7 +85,7 @@ norm:
 run: $(NAME)
 	@echo "\033[1;34m\n~ **************************************** ~\n"
 	@echo " ~ Running ./$(NAME) $(DEF)"
-	@echo "\n~ **************************************** ~\n"
+	@echo "\n~ **************************************** ~ \033[1;37m\n"
 	@./$(NAME) $(DEF)
 #-------------------------------------------------------------#
 #-------------------------------------------------------------#

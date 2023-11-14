@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:28:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/13 20:35:17 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:50:20 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_print_stat(char **stack_a, char **stack_b)
 	ft_printf("\033[1;37mActual len of Stack_B: %u\n", ln_b);
 	ft_printf("\n\033[1;37mContent of Stack_A:\n");
 	ft_print_stack_cnt(stack_a);
+	ft_printf("Min is in pose: %u\n", ft_where_is_min(stack_a));
+	ft_printf("Max is in pose: %u\n", ft_where_is_max(stack_a));
 	ft_printf("\n\n\033[1;37mContent of Stack_B:\n");
 	ft_print_stack_cnt(stack_b);
 	ft_printf("\033[1;35m\n ~ ~~~~~~~~~~~~~~ ~\n\n");

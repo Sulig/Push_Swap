@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:28:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/14 13:32:23 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:49:56 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,54 @@ int	ft_is_sorted(char **stack)
 		ln++;
 	}
 	return (ok);
+}
+
+size_t	ft_where_is_min(char **stack)
+{
+	size_t	cnt;
+	size_t	pos;
+	int		act;
+	int		min;
+
+	cnt = 0;
+	pos = 0;
+	if (!stack)
+		return (0);
+	min = ft_atoi(stack[0]);
+	while (stack[cnt])
+	{
+		act = ft_atoi(stack[cnt]);
+		if (act < min)
+		{
+			min = act;
+			pos = cnt;
+		}
+		cnt++;
+	}
+	return (pos);
+}
+
+size_t	ft_where_is_max(char **stack)
+{
+	size_t	cnt;
+	size_t	pos;
+	int		act;
+	int		max;
+
+	cnt = 0;
+	pos = 0;
+	if (!stack)
+		return (0);
+	max = ft_atoi(stack[0]);
+	while (stack[cnt])
+	{
+		act = ft_atoi(stack[cnt]);
+		if (act > max)
+		{
+			max = act;
+			pos = cnt;
+		}
+		cnt++;
+	}
+	return (pos);
 }
