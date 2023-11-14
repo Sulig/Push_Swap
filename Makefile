@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/13 17:21:34 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/14 14:03:54 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ MAK = Makefile
 ARL = $(LIBFT)/libft.a
 
 LIB = push_swap.h
-SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_swap ft_utils
+SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
+	  ft_swap ft_utils
 
 OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 # ******************************************************************************* #
