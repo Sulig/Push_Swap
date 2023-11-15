@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 17:07:36 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:27:26 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,21 @@ int	main(int argc, char **args)
 	char	*join;
 
 	if (argc == 1)
+	{
 		ft_printf("Error\n");
+		return (0);
+	}
 	join = ft_check_dimax(args);
 	if (join)
 	{
-		stack_b = NULL;
 		stack_a = ft_split(join, ' ');
+		stack_b = NULL;
 		if (stack_a)
 		{
 			if (ft_check_double(stack_a))
-			{
 				ft_switch_lenght(&stack_a, &stack_b);
-				//ft_print_stat(stack_a, stack_b);
-				ft_print_checker(stack_a, stack_b);
-			}
 			stack_a = ft_auto_free_arr(stack_a);
-			stack_b = ft_auto_free_arr(stack_b);
+		//	stack_b = ft_auto_free_arr(stack_b);
 		}
 		join = ft_free_str(join);
 	}

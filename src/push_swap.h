@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 18:07:36 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:05:37 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_swap_s(char **stack_a, char **stack_b);
 
 void	ft_sort_tree(char **stack_a);
 void	ft_sort_four(char ***stack_a, char ***stack_b);
+void	ft_sort_five(char ***stack_a, char ***stack_b);
 void	ft_switch_lenght(char ***stack_a, char ***stack_b);
 
 void	ft_print_stack_cnt(char **stack);

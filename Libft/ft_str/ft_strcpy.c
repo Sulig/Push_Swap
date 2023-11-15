@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 19:07:49 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 18:11:24 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:19:18 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ char	**ft_strarrdup(char **to_copy)
 	copy = ft_calloc(sizeof(char *), ft_arr_strlen(to_copy) + 1);
 	if (!copy)
 		return (NULL);
-	while (to_copy[cnt])
+	if (to_copy)
 	{
-		copy[cnt] = ft_strdup(to_copy[cnt]);
-		cnt++;
+		while (to_copy[cnt])
+		{
+			copy[cnt] = ft_strdup(to_copy[cnt]);
+			cnt++;
+		}
 	}
 	return (copy);
 }
