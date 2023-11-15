@@ -6,11 +6,28 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 19:07:49 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/13 19:44:40 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:11:24 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+
+char	**ft_strarrdup(char **to_copy)
+{
+	char	**copy;
+	size_t	cnt;
+
+	cnt = 0;
+	copy = ft_calloc(sizeof(char *), ft_arr_strlen(to_copy) + 1);
+	if (!copy)
+		return (NULL);
+	while (to_copy[cnt])
+	{
+		copy[cnt] = ft_strdup(to_copy[cnt]);
+		cnt++;
+	}
+	return (copy);
+}
 
 char	*ft_strdup(const char *s1)
 {

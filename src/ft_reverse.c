@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:04:06 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/14 18:09:13 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:31:03 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_reverse_b(char **stack_b)
 	}
 }
 
-static void	ft_reverse(char **stack)
+void	ft_reverse(char **stack)
 {
 	long	act;
 	long	bef;

@@ -6,13 +6,13 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:12:00 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/14 13:52:10 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:29:27 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**ft_push(char **stack, char *first)
+static char	**ft_push(char **stack, char *first)
 {
 	size_t	cnt;
 	size_t	ln;
@@ -37,7 +37,7 @@ char	**ft_push(char **stack, char *first)
 	return (new);
 }
 
-char	**ft_rm_first(char **stack)
+static char	**ft_rm_first(char **stack)
 {
 	char	**tmp;
 	size_t	cnt;

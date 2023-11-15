@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:54:04 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/09 19:11:34 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:33:01 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ void	ft_swap_b(char **stack_b)
 	}
 }
 
-static char	**ft_swap(char **stack)
+void	ft_swap(char **stack)
 {
 	char	*tmp;
 
-	if (ft_arr_strlen(stack) <= 1)
-		return (stack);
-	tmp = stack[1];
-	stack[1] = stack[0];
-	stack[0] = tmp;
-	tmp = NULL;
-	return (stack);
+	if (ft_arr_strlen(stack) > 1)
+	{
+		tmp = stack[1];
+		stack[1] = stack[0];
+		stack[0] = tmp;
+		tmp = NULL;
+	}
 }
 
 void	ft_swap_s(char **stack_a, char **stack_b)
 {
-	stack_a = ft_swap(stack_a);
-	stack_b = ft_swap(stack_b);
+	ft_swap(stack_a);
+	ft_swap(stack_b);
 	ft_printf("ss\n");
 }

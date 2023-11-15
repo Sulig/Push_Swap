@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/14 19:54:13 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:07:36 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	main(int argc, char **args)
 			if (ft_check_double(stack_a))
 			{
 				ft_switch_lenght(&stack_a, &stack_b);
-				ft_print_stat(stack_a, stack_b);
+				//ft_print_stat(stack_a, stack_b);
+				ft_print_checker(stack_a, stack_b);
 			}
 			stack_a = ft_auto_free_arr(stack_a);
 			stack_b = ft_auto_free_arr(stack_b);

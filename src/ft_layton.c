@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 13:22:28 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:09:22 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 	len = ft_arr_strlen(*stack_a);
 	if (ft_is_sorted(*stack_a))
 		return ;
+	if (ft_can_sort_in_one(*stack_a))
+		return ;
 	else if (len == 2)
 		ft_swap_a(*stack_a);
 	else if (len == 3)
 		ft_sort_tree(*stack_a);
 	else if (len == 4)
 		ft_sort_four(stack_a, stack_b);
-	ft_printf("", stack_b);
 }

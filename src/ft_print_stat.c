@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:28:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 13:33:20 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:25:30 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,33 @@ void	ft_print_stat(char **stack_a, char **stack_b)
 	ft_printf("\n\n\033[1;37mContent of Stack_B:\n");
 	ft_print_stack_cnt(stack_b);
 	ft_printf("\033[1;35m\n ~ ~~~~~~~~~~~~~~ ~\n\n");
+}
+
+void	ft_print_checker(char **stack_a, char **stack_b)
+{
+	int	sorted;
+	int	null;
+
+	null = ft_is_null(stack_b);
+	sorted = ft_is_sorted(stack_a);
+	ft_printf("\033[1;37m\n ~ Checker ~\n\n");
+	ft_printf("\033[1;33mStack A is Sorted: ");
+	if (sorted)
+		ft_printf("\033[1;32mYES\n");
+	else
+		ft_printf("\033[1;31mNO\n");
+	ft_printf("\033[1;33mStack B is NULL: ");
+	if (null)
+		ft_printf("\033[1;32mYES\n");
+	else
+		ft_printf("\033[1;31mNO\n");
+	ft_printf("\033[1;37m\n ~  Grade:\t");
+	if (sorted && null)
+		ft_printf("\033[1;32m50%%\n");
+	else if (sorted && !null)
+		ft_printf("\033[1;33m45%%\n");
+	else if (!sorted && null)
+		ft_printf("\033[1;31m10%%\n");
+	else
+		ft_printf("\033[1;31m0%%!\n");
 }

@@ -6,11 +6,20 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:28:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 14:18:07 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 17:10:09 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_is_null(char **stack)
+{
+	if (!stack)
+		return (1);
+	if (!stack[0])
+		return (1);
+	return (0);
+}
 
 int	ft_is_sorted(char **stack)
 {
