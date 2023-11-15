@@ -6,13 +6,13 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/14 19:55:04 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/15 14:15:18 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-DEF = 3 1 2
+DEF = 3 1 2 4
 # ------------------ #
 # Flags:
 
@@ -32,7 +32,7 @@ ARL = $(LIBFT)/libft.a
 
 LIB = push_swap.h
 SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
-	  ft_swap ft_utils ft_layton
+	  ft_swap ft_utils ft_layton ft_sort_four
 
 OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 # ******************************************************************************* #

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:28:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/14 19:49:56 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/15 14:18:07 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ int	ft_is_sorted(char **stack)
 		ln++;
 	}
 	return (ok);
+}
+
+int	ft_is_smaller_than(char *num, char *other)
+{
+	int	num_p;
+	int	other_p;
+
+	num_p = ft_atoi(num);
+	other_p = ft_atoi(other);
+	if (num_p < other_p)
+		return (1);
+	else
+		return (0);
 }
 
 size_t	ft_where_is_min(char **stack)
