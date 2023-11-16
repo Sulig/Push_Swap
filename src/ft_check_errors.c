@@ -6,11 +6,29 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:22:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 14:09:38 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:49:13 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_check_if_null_args(char **args, int argc)
+{
+	size_t	cnt;
+
+	cnt = 1;
+	if (!args || argc <= 1)
+		return (0);
+	if (!args[cnt])
+		return (0);
+	while (args[cnt])
+	{
+		if (!args[cnt][0])
+			return (0);
+		cnt++;
+	}
+	return (1);
+}
 
 static int	ft_is_acceptable(int c)
 {
@@ -29,28 +47,30 @@ static int	ft_is_acceptable(int c)
 int	ft_check_digit(char *str)
 {
 	size_t	cnt;
-	int		ok;
+	size_t	nums;
 
+	nums = 0;
 	cnt = 0;
-	ok = 1;
 	while (str[cnt])
 	{
 		if (!ft_is_acceptable(str[cnt]))
-			ok = 0;
+			nums = 0;
 		else if (ft_is_acceptable(str[cnt]) == 2)
 		{
 			if (str[cnt + 1] == ' ' || !str[cnt + 1])
-				ok = 0;
+				nums = 0;
 			if (ft_is_acceptable(str[cnt + 1]) == 2)
-				ok = 0;
+				nums = 0;
 			if (ft_is_acceptable(str[cnt - 1]) == 1)
-				ok = 0;
+				nums = 0;
 		}
+		else if (ft_is_acceptable(str[cnt]) == 1)
+			nums++;
 		cnt++;
 	}
-	if (!ok)
+	if (!nums)
 		ft_printf("Error\n");
-	return (ok);
+	return (nums);
 }
 
 int	ft_check_max(char **arr)

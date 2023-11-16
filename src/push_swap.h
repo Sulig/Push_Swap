@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 12:02:19 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:40:47 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../Libft/libft.h"
 
+int		ft_check_if_null_args(char **args, int argc);
 int		ft_check_digit(char *str);
 int		ft_check_max(char **arr);
 int		ft_check_double(char **stack);

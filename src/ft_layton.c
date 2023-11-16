@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 14:13:52 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:28:58 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,53 @@ void	ft_sort_tree(char **stack_a)
 	}
 }
 
-void	ft_sort_five(char ***stack_a, char ***stack_b)
+void	ft_min_in_first(char **stack)
 {
 	size_t	min;
+	size_t	len;
 
-	min = ft_where_is_min(*stack_a);
-	if (min < 3)
+	min = ft_where_is_min(stack);
+	len = ft_arr_strlen(stack);
+	if (min < (len / 2))
 	{
 		while (min != 0)
 		{
-			ft_rotate_a(*stack_a);
-			min = ft_where_is_min(*stack_a);
+			ft_rotate_a(stack);
+			min = ft_where_is_min(stack);
 		}
 	}
 	else
 	{
 		while (min != 0)
 		{
-			ft_reverse_a(*stack_a);
-			min = ft_where_is_min(*stack_a);
+			ft_reverse_a(stack);
+			min = ft_where_is_min(stack);
 		}
 	}
+}
+
+void	ft_sort_five(char ***stack_a, char ***stack_b)
+{
+	ft_min_in_first(*stack_a);
 	ft_push_b(stack_a, stack_b);
 	ft_sort_four(stack_a, stack_b);
 	ft_push_a(stack_a, stack_b);
+}
+
+void	ft_tmp_sort(char ***stack_a, char ***stack_b)
+{
+	size_t	len;
+
+	len = ft_arr_strlen(*stack_a);
+	while (len > 5)
+	{
+		ft_min_in_first(*stack_a);
+		ft_push_b(stack_a, stack_b);
+		len = ft_arr_strlen(*stack_a);
+	}
+	ft_sort_five(stack_a, stack_b);
+	while (ft_arr_strlen(*stack_b))
+		ft_push_a(stack_a, stack_b);
 }
 
 void	ft_switch_lenght(char ***stack_a, char ***stack_b)
@@ -80,4 +103,6 @@ void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 		ft_sort_four(stack_a, stack_b);
 	else if (len == 5)
 		ft_sort_five(stack_a, stack_b);
+	else
+		ft_tmp_sort(stack_a, stack_b);
 }

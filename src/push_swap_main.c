@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 13:16:55 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:40:56 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int argc, char **args)
 	char	**stack_b;
 	char	*join;
 
-	if (argc == 1)
+	if (!ft_check_if_null_args(args, argc))
 	{
 		ft_printf("Error\n");
 		return (0);
