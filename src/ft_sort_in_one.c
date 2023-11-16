@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:53:34 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 18:17:55 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:13:28 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,36 @@
 
 static int	ft_can_sort(char **stack, char ins)
 {
-	if (ins == 's')
-		ft_swap(stack);
-	if (ins == 'r')
-		ft_rotate(stack);
-	if (ins == 'i')
-		ft_reverse(stack);
-	if (ft_is_sorted(stack))
-		return (1);
-	else
+	char	**copy;
+	int		ok;
+
+	ok = 0;
+	copy = ft_strarrdup(stack);
+	if (!copy)
 		return (0);
+	if (ins == 's')
+		ft_swap(copy);
+	if (ins == 'r')
+		ft_rotate(copy);
+	if (ins == 'i')
+		ft_reverse(copy);
+	if (ft_is_sorted(copy))
+		ok = 1;
+	copy = ft_auto_free_arr(copy);
+	return (ok);
 }
 
 static char	ft_what_ins(char **stack)
 {
-	char	**copy;
 	char	ret;
 
 	ret = '\0';
-	copy = ft_strarrdup(stack);
-	if (!copy)
-		return ('\0');
-	if (ft_can_sort(copy, 's'))
+	if (ft_can_sort(stack, 's'))
 		ret = 's';
-	else if (ft_can_sort(copy, 'r'))
+	else if (ft_can_sort(stack, 'r'))
 		ret = 'r';
-	else if (ft_can_sort(copy, 'i'))
+	else if (ft_can_sort(stack, 'i'))
 		ret = 'i';
-	copy = ft_auto_free_arr(copy);
 	return (ret);
 }
 

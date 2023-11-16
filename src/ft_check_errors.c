@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 13:22:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/09 17:58:54 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:38 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_is_acceptable(int c)
 	else if (c == '-' || c == '+')
 		ok = 2;
 	else if (c == ' ')
-		ok = 1;
+		ok = 3;
 	return (ok);
 }
 
@@ -38,8 +38,14 @@ int	ft_check_digit(char *str)
 		if (!ft_is_acceptable(str[cnt]))
 			ok = 0;
 		else if (ft_is_acceptable(str[cnt]) == 2)
+		{
+			if (str[cnt + 1] == ' ' || !str[cnt + 1])
+				ok = 0;
 			if (ft_is_acceptable(str[cnt + 1]) == 2)
 				ok = 0;
+			if (ft_is_acceptable(str[cnt - 1]) == 1)
+				ok = 0;
+		}
 		cnt++;
 	}
 	if (!ok)

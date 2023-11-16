@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:12:00 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 17:29:27 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:32:22 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,23 @@ static char	**ft_push(char **stack, char *first)
 
 static char	**ft_rm_first(char **stack)
 {
-	char	**tmp;
+	char	**new;
 	size_t	cnt;
 	size_t	ln;
 
 	ln = 0;
 	cnt = 1;
-	tmp = NULL;
-	tmp = ft_calloc(sizeof(char *), ft_arr_strlen(stack));
-	if (!tmp)
+	new = NULL;
+	new = ft_calloc(sizeof(char *), ft_arr_strlen(stack));
+	if (!new)
 		return (NULL);
 	while (stack[cnt])
 	{
-		tmp[ln] = ft_strdup(stack[cnt]);
+		new[ln] = ft_strdup(stack[cnt]);
 		cnt++;
 		ln++;
 	}
-	return (tmp);
+	return (new);
 }
 
 void	ft_push_a(char ***stack_a, char ***stack_b)
@@ -67,9 +67,9 @@ void	ft_push_a(char ***stack_a, char ***stack_b)
 	{
 		new_b = ft_rm_first(stack_b[0]);
 		new_a = ft_push(*stack_a, stack_b[0][0]);
-		stack_a[0] = ft_auto_free_arr(*stack_a);
+		*stack_a = ft_auto_free_arr(*stack_a);
 		stack_a[0] = new_a;
-		stack_b[0] = ft_auto_free_arr(*stack_b);
+		*stack_b = ft_auto_free_arr(*stack_b);
 		stack_b[0] = new_b;
 		ft_printf("pa\n");
 	}

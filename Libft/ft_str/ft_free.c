@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:30:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/13 14:27:39 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 13:13:01 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void	*ft_auto_free_arr(char **arr)
 	if (size)
 	{
 		while (size--)
+		{
 			if (arr[size])
 				free(arr[size]);
+			arr[size] = NULL;
+		}
 		free(arr);
 	}
 	arr = NULL;

@@ -6,11 +6,20 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:28:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 17:25:30 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:17:37 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_is_null(char **stack)
+{
+	if (!stack)
+		return (1);
+	if (!stack[0])
+		return (1);
+	return (0);
+}
 
 void	ft_print_stack_cnt(char **stack)
 {
@@ -22,17 +31,14 @@ void	ft_print_stack_cnt(char **stack)
 	else
 	{
 		if (!stack[cnt])
-		{
 			ft_printf("\n\033[1;31mNULL but the pointer is not NULL");
-			ft_printf("\n\033[1;33mRemember to free: %p\n", &stack);
-		}
 		while (stack[cnt])
 		{
 			ft_printf("[%u]: %s\t", cnt, stack[cnt]);
 			cnt++;
 		}
+		ft_printf("\n\033[1;33mRemember to free: %p\033[1;37m\n", stack);
 	}
-	ft_printf("\033[1;37m\n");
 }
 
 void	ft_print_stat(char **stack_a, char **stack_b)
