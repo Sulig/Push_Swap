@@ -13,6 +13,7 @@ deberás probar a utilizar varios tipos de algoritmos y elegir la solución más
 ## Contenido del repositorio:
 - Libft + ft_printf + GetNextLine
 - Push_Swap *In progress*
+- Checker (Push_Swap Bonus)
 - Subject
 
 ***
