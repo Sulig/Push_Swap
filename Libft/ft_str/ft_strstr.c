@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 17:57:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/09/28 18:03:11 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:22:16 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	size_t	cnt;
 	size_t	cntn;
 
-	if (needle[0] == 0 || haystack == needle)
+	if (!needle)
 		return ((char *) haystack);
 	cnt = 0;
 	while (haystack[cnt] != '\0')

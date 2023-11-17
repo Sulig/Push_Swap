@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 19:27:16 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 13:13:13 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:39:37 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*ft_itoa(int n);
 char	*ft_itoa_unsig(size_t n, char *base);
 char	*ft_unsig_tobase(size_t num, char base);
 
+int		my_strcmp(const char *str, const char *cmp);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(const char *s, int c);

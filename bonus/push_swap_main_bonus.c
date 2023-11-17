@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_main.c                                   :+:      :+:    :+:   */
+/*   push_swap_main_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 12:56:07 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/17 11:43:31 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/17 12:49:39 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 static char	*ft_arr_str_to_arr_chr(char **arr)
 {
@@ -70,19 +70,18 @@ int	main(int argc, char **args)
 		return (0);
 	}
 	join = ft_check_dimax(args);
-	if (join)
+	if (!join)
+		return (0);
+	stack_a = ft_split(join, ' ');
+	stack_b = NULL;
+	if (stack_a)
 	{
-		stack_a = ft_split(join, ' ');
-		stack_b = NULL;
-		if (stack_a)
-		{
-			if (ft_check_double(stack_a))
-				ft_switch_lenght(&stack_a, &stack_b);
-			stack_a = ft_auto_free_arr(stack_a);
-			if (stack_b)
-				free(stack_b);
-		}
-		join = ft_free_str(join);
+		if (ft_check_double(stack_a))
+			ft_do_while(&stack_a, &stack_b);
+		stack_a = ft_auto_free_arr(stack_a);
+		if (stack_b)
+			free(stack_b);
 	}
+	join = ft_free_str(join);
 	return (0);
 }

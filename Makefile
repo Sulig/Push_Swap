@@ -6,13 +6,15 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/16 20:28:36 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/17 12:44:03 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-DEF = 2 7 1 0
+BONUS = checker
+
+DEF = 2 7 1
 # ------------------ #
 # Flags:
 
@@ -36,7 +38,8 @@ SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
 	  ft_swap ft_utils ft_layton ft_sort_four ft_sort_in_one
 
 LIBB = push_swap_bonus.h
-BONUS = #push_swap_main_bonus
+SRCB = push_swap_main_bonus ft_check_errors_bonus ft_push_bonus ft_reverse_bonus\
+		ft_rotate_bonus ft_swap_bonus ft_utils_bonus ft_print_stat_bonus
 
 OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 OBJB = $(addprefix $(DIRB)/, $(addsuffix .o, $(SRCB)))
@@ -88,13 +91,13 @@ trueall:
 #-------------------------------------------------------------#
 norm:
 	@make -s norm -C $(LIBFT)
-	@echo "\n\033[1;93m~ Norminette:"
+	@echo "\n\033[1;93m~ Norminette:\n"
 	@norminette $(DIR)
 	@echo "\n~~~~~~~~~~~~~~~~~~~~~~\n"
 	@norminette -R CheckForbiddenSourceHeader $(DIR)
 	@echo "\033[1;32m\n ~ Norminette:\t~ OK\n"
-	@echo "\n~~~~~~~~~~~~~~~~~~~~~~\n"
-	@echo "\n\033[1;93m~ Norminette bonus:"
+	@echo "~~~~~~~~~~~~~~~~~~~~~~\n"
+	@echo "\n\033[1;93m\n~ Norminette bonus:\n"
 	@norminette $(DIRB)
 	@echo "\n~~~~~~~~~~~~~~~~~~~~~~\n"
 	@norminette -R CheckForbiddenSourceHeader $(DIRB)
@@ -142,7 +145,7 @@ $(NAME): $(MAK) $(ARL) $(OBJ)
 $(DIRB)/%.o : $(DIRB)/%.c $(DIRB)/$(LIBB)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BONUS): $(MAK) $(ARML) $(ARL) $(OBJB)
+$(BONUS): $(MAK) $(ARL) $(OBJB)
 	@echo "\033[1;37m\n~ **************************************** ~\n"
 	@echo "\033[1;93m * Making $(BONUS) -->\033[1;97m\n"
 	@$(CC) $(ARL) $(OBJB) -o $(BONUS)
