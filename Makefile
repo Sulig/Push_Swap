@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/17 12:44:03 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/17 13:54:19 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ trueall:
 	@echo "\033[0;37m\n~ **************************************** ~\n"
 	@make -s $(NAME)
 	@make -s run
-	#@make -s run_bonus
+	@make -s run_bonus
 
 #-------------------------------------------------------------#
 norm:
@@ -208,6 +208,7 @@ clean:
 fclean: clean
 	@make -s fclean -C $(LIBFT)
 	@/bin/rm -f $(NAME)
+	@/bin/rm -f $(BONUS)
 	@/bin/rm -frd $(NAME).dSYM
 	@/bin/rm -frd $(BONUS).dSYM
 	@echo "\033[1;34m All cleaned succesfully\033[1;97m\n"
