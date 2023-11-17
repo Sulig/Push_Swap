@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/17 13:54:19 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/17 14:01:19 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
 
 LIBB = push_swap_bonus.h
 SRCB = push_swap_main_bonus ft_check_errors_bonus ft_push_bonus ft_reverse_bonus\
-		ft_rotate_bonus ft_swap_bonus ft_utils_bonus ft_print_stat_bonus
+		ft_rotate_bonus ft_swap_bonus ft_utils_bonus
 
 OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 OBJB = $(addprefix $(DIRB)/, $(addsuffix .o, $(SRCB)))
@@ -150,7 +150,7 @@ $(BONUS): $(MAK) $(ARL) $(OBJB)
 	@echo "\033[1;93m * Making $(BONUS) -->\033[1;97m\n"
 	@$(CC) $(ARL) $(OBJB) -o $(BONUS)
 	@echo "\033[1;35m\n~ **************************************** ~\n"
-	@echo "  ~\t   Push_Swap Bonus is ready!\t ~\n"
+	@echo "  ~\t   Checker is ready!\t\t~\n"
 	@echo "~ **************************************** ~\n"
 #-------------------------------------------------------------#
 # ******************************************************************************* #

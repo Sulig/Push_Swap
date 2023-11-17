@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:41:43 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 12:44:43 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/17 13:59:25 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,5 @@ void	ft_reverse_r(char **stack_a, char **stack_b);
 void	ft_swap_a(char **stack_a);
 void	ft_swap_b(char **stack_b);
 void	ft_swap_s(char **stack_a, char **stack_b);
-
-void	ft_print_stack_cnt(char **stack);
-void	ft_print_stat(char **stack_a, char **stack_b);
-void	ft_print_checker(char **stack_a, char **stack_b);
 
 #endif
