@@ -19,7 +19,29 @@ deberás probar a utilizar varios tipos de algoritmos y elegir la solución más
 ***
 ## Comandos Esenciales:
 
-!!WORK IN PROGRESS!!
+Make push_swap
+
+    make all
+
+Make checker
+
+    make bonus
+
+Run Push_Swap with def stack
+
+    make run
+
+Run checker with def stack
+
+    make run_bonus
+
+Clean all
+
+    make clear
+
+For more comands ejecute
+
+    make help
 
 ***
 ~ Made by sadoming ~ ~ Started on: 07/11
