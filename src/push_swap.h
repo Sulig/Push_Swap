@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 12:25:21 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/21 20:27:23 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 
 # include "../Libft/libft.h"
 
+struct typedef s_cost_moves
+{
+	int			ra;
+	int			rb;
+	int			rr;
+	int			rra;
+	int			rrb;
+	int			rrr;
+	int			total;
+}				t_cost_moves;
+
 int		ft_check_if_null_args(char **args, int argc);
 int		ft_check_digit(char *str);
 int		ft_check_max(char **arr);
@@ -22,7 +33,7 @@ int		ft_check_double(char **stack);
 
 int		ft_is_null(char **stack);
 int		ft_is_sorted(char **stack);
-int		ft_is_sorted_inverse(char **stack);
+int		ft_diference_of_num(char *num, char *other);
 int		ft_is_smaller_than(char *num, char *other);
 int		ft_can_sort_in_one(char **stack);
 size_t	ft_where_is_min(char **stack);

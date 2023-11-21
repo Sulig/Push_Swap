@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:28:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 12:25:31 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/21 20:26:45 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,14 @@ int	ft_is_sorted(char **stack)
 	return (ok);
 }
 
-int	ft_is_sorted_inverse(char **stack)
+int	ft_diference_of_num(char *num, char *other)
 {
-	size_t	ln;
-	size_t	next;
-	int		st;
-	int		nx;
-	int		ok;
+	int	num_p;
+	int	other_p;
 
-	ok = 1;
-	ln = 0;
-	if (!stack)
-		return (0);
-	while (stack[ln])
-	{
-		st = ft_atoi(stack[ln]);
-		next = ln + 1;
-		while (stack[next])
-		{
-			nx = ft_atoi(stack[next]);
-			if (st < nx)
-				ok = 0;
-			next++;
-		}
-		ln++;
-	}
-	return (ok);
+	num_p = ft_atoi(num);
+	other_p = ft_atoi(other);
+	return (num_p - other_p);
 }
 
 int	ft_is_smaller_than(char *num, char *other)
