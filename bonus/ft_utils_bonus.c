@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:58:26 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 13:58:22 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:24:11 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ void	ft_do_while(char ***stack_a, char ***stack_b)
 		move = get_next_line(1);
 	}
 	ft_checker(*stack_a, *stack_b);
-	*stack_a = ft_auto_free_arr(*stack_a);
+	if (*stack_a)
+		if (*stack_a[0])
+			*stack_a = ft_auto_free_arr(*stack_a);
 	if (*stack_b)
 		if (*stack_b[0])
 			*stack_b = ft_auto_free_arr(*stack_b);

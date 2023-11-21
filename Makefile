@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/17 14:01:19 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/21 17:58:52 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ ARL = $(LIBFT)/libft.a
 
 LIB = push_swap.h
 SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
-	  ft_swap ft_utils ft_layton ft_sort_four ft_sort_in_one
+	  ft_swap ft_utils ft_layton ft_sort_four ft_sort_in_one ft_big_sort
 
 LIBB = push_swap_bonus.h
 SRCB = push_swap_main_bonus ft_check_errors_bonus ft_push_bonus ft_reverse_bonus\

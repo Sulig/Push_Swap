@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 16:28:58 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:56:54 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,10 @@ void	ft_sort_five(char ***stack_a, char ***stack_b)
 	ft_push_a(stack_a, stack_b);
 }
 
-void	ft_tmp_sort(char ***stack_a, char ***stack_b)
+static void	ft_rotate_sort(char **stack)
 {
-	size_t	len;
-
-	len = ft_arr_strlen(*stack_a);
-	while (len > 5)
-	{
-		ft_min_in_first(*stack_a);
-		ft_push_b(stack_a, stack_b);
-		len = ft_arr_strlen(*stack_a);
-	}
-	ft_sort_five(stack_a, stack_b);
-	while (ft_arr_strlen(*stack_b))
-		ft_push_a(stack_a, stack_b);
+	while (!ft_is_sorted(stack))
+		ft_rotate(stack);
 }
 
 void	ft_switch_lenght(char ***stack_a, char ***stack_b)
@@ -103,6 +93,8 @@ void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 		ft_sort_four(stack_a, stack_b);
 	else if (len == 5)
 		ft_sort_five(stack_a, stack_b);
+	else if (ft_is_sorted_inverse(*stack_a))
+		ft_rotate_sort(*stack_a);
 	else
-		ft_tmp_sort(stack_a, stack_b);
+		ft_printf("\n");
 }

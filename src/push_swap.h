@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 17:40:47 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:25:21 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		ft_check_double(char **stack);
 
 int		ft_is_null(char **stack);
 int		ft_is_sorted(char **stack);
+int		ft_is_sorted_inverse(char **stack);
 int		ft_is_smaller_than(char *num, char *other);
 int		ft_can_sort_in_one(char **stack);
 size_t	ft_where_is_min(char **stack);

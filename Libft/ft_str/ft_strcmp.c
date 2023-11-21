@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:45:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 13:48:16 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:10:32 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * If str reach '\0' => Then cmp is identicall to str
  * Return 0 when encounters a diference
 */
-int    my_strcmp(const char *str, const char *cmp)
+int	my_strcmp(const char *str, const char *cmp)
 {
 	size_t	cnt;
 

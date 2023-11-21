@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:12:00 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 13:32:22 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:05:59 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	**ft_push(char **stack, char *first)
 	return (new);
 }
 
-static char	**ft_rm_first(char **stack)
+static char	**ft_pop(char **stack)
 {
 	char	**new;
 	size_t	cnt;
@@ -65,7 +65,7 @@ void	ft_push_a(char ***stack_a, char ***stack_b)
 
 	if (ft_arr_strlen(*stack_b))
 	{
-		new_b = ft_rm_first(stack_b[0]);
+		new_b = ft_pop(stack_b[0]);
 		new_a = ft_push(*stack_a, stack_b[0][0]);
 		*stack_a = ft_auto_free_arr(*stack_a);
 		stack_a[0] = new_a;
@@ -82,7 +82,7 @@ void	ft_push_b(char ***stack_a, char ***stack_b)
 
 	if (ft_arr_strlen(*stack_a))
 	{
-		new_a = ft_rm_first(stack_a[0]);
+		new_a = ft_pop(stack_a[0]);
 		new_b = ft_push(*stack_b, stack_a[0][0]);
 		stack_a[0] = ft_auto_free_arr(*stack_a);
 		stack_a[0] = new_a;
