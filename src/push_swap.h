@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 20:27:23 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:52:24 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,28 @@
 
 struct typedef s_cost_moves
 {
-	int			ra;
-	int			rb;
-	int			rr;
-	int			rra;
-	int			rrb;
-	int			rrr;
-	int			total;
-}				t_cost_moves;
+	size_t		ra;
+	size_t		rb;
+	size_t		rr;
+	size_t		rra;
+	size_t		rrb;
+	size_t		rrr;
+	size_t		total;
+}				t_cst_ms;
+
+
+
+typedef struct s_piece
+{
+	int value;
+	int index;
+} t_piece;
+
+typedef struct s_tack
+{
+	int len;
+	t_piece  *arr;
+}
 
 int		ft_check_if_null_args(char **args, int argc);
 int		ft_check_digit(char *str);
@@ -60,6 +74,8 @@ void	ft_swap_s(char **stack_a, char **stack_b);
 void	ft_sort_tree(char **stack_a);
 void	ft_sort_four(char ***stack_a, char ***stack_b);
 void	ft_sort_five(char ***stack_a, char ***stack_b);
+void	ft_big_sort(char ***stack_a, char ***stack_b);
+void	ft_min_in_first(char **stack);
 void	ft_switch_lenght(char ***stack_a, char ***stack_b);
 
 void	ft_print_stack_cnt(char **stack);

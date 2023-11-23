@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:41:43 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 13:59:25 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:37:27 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_check_double(char **stack);
 int		ft_is_null(char **stack);
 int		ft_is_sorted(char **stack);
 
-void	ft_do_while(char ***stack_a, char ***stack_b);
+void	ft_do_while(char ***stack_a);
 void	ft_checker(char **stack_a, char **stack_b);
 
 void	ft_push_a(char ***stack_a, char ***stack_b);

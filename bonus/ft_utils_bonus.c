@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:58:26 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 17:24:11 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:36:43 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,29 +91,30 @@ int	ft_switch_move(char ***stack_a, char ***stack_b, char *move)
 	return (1);
 }
 
-void	ft_do_while(char ***stack_a, char ***stack_b)
+void	ft_do_while(char ***stack_a)
 {
+	char	**stack_b;
 	char	*move;
 
+	stack_b = NULL;
 	move = get_next_line(1);
 	while (move)
 	{
-		if (!ft_switch_move(stack_a, stack_b, move))
+		if (!ft_switch_move(stack_a, &stack_b, move))
 		{
 			ft_printf("Error\n");
 			free(move);
 			*stack_a = ft_auto_free_arr(*stack_a);
-			*stack_b = ft_auto_free_arr(*stack_b);
+			stack_b = ft_auto_free_arr(stack_b);
 			return ;
 		}
 		free(move);
 		move = get_next_line(1);
 	}
-	ft_checker(*stack_a, *stack_b);
+	ft_checker(*stack_a, stack_b);
 	if (*stack_a)
 		if (*stack_a[0])
 			*stack_a = ft_auto_free_arr(*stack_a);
-	if (*stack_b)
-		if (*stack_b[0])
-			*stack_b = ft_auto_free_arr(*stack_b);
+	if (stack_b)
+		stack_b = ft_auto_free_arr(stack_b);
 }

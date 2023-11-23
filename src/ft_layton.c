@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 17:56:54 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:56:44 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,6 @@ void	ft_sort_five(char ***stack_a, char ***stack_b)
 	ft_push_a(stack_a, stack_b);
 }
 
-static void	ft_rotate_sort(char **stack)
-{
-	while (!ft_is_sorted(stack))
-		ft_rotate(stack);
-}
-
 void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 {
 	size_t	len;
@@ -93,8 +87,6 @@ void	ft_switch_lenght(char ***stack_a, char ***stack_b)
 		ft_sort_four(stack_a, stack_b);
 	else if (len == 5)
 		ft_sort_five(stack_a, stack_b);
-	else if (ft_is_sorted_inverse(*stack_a))
-		ft_rotate_sort(*stack_a);
 	else
-		ft_printf("\n");
+		ft_big_sort(stack_a, stack_b);
 }
