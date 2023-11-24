@@ -5,57 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 18:54:04 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 17:33:01 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 16:29:57 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/23 16:41:41 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap_a(char **stack_a)
+void	ft_swap(t_stack *s)
 {
-	char	*tmp;
+	size_t	tmp_v;
+	size_t	tmp_i;
 
-	if (ft_arr_strlen(stack_a) > 1)
+	if (s->len > 1)
 	{
-		tmp = stack_a[1];
-		stack_a[1] = stack_a[0];
-		stack_a[0] = tmp;
-		tmp = NULL;
+		tmp_v = s->arr[0].value;
+		tmp_i = s->arr[0].index;
+		s->arr[0].value = s->arr[1].value;
+		s->arr[0].index = s->arr[1].index;
+		s->arr[1].value = tmp_v;
+		s->arr[1].index = tmp_i;
+	}
+}
+
+void	ft_sa(t_stack *a)
+{
+	if (a->len > 1)
+	{
+		ft_swap(a);
 		ft_printf("sa\n");
 	}
 }
 
-void	ft_swap_b(char **stack_b)
+void	ft_sb(t_stack *b)
 {
-	char	*tmp;
-
-	if (ft_arr_strlen(stack_b) > 1)
+	if (b->len > 1)
 	{
-		tmp = stack_b[1];
-		stack_b[1] = stack_b[0];
-		stack_b[0] = tmp;
-		tmp = NULL;
+		ft_swap(b);
 		ft_printf("sb\n");
 	}
 }
 
-void	ft_swap(char **stack)
+void	ft_ss(t_stack *a, t_stack *b)
 {
-	char	*tmp;
-
-	if (ft_arr_strlen(stack) > 1)
-	{
-		tmp = stack[1];
-		stack[1] = stack[0];
-		stack[0] = tmp;
-		tmp = NULL;
-	}
-}
-
-void	ft_swap_s(char **stack_a, char **stack_b)
-{
-	ft_swap(stack_a);
-	ft_swap(stack_b);
+	ft_swap(a);
+	ft_swap(b);
 	ft_printf("ss\n");
 }

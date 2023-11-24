@@ -5,73 +5,109 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:28:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 14:17:37 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 15:43:57 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/24 14:35:39 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_is_null(char **stack)
+void	ft_print_piece(t_piece *a, t_piece *b)
 {
-	if (!stack)
-		return (1);
-	if (!stack[0])
-		return (1);
-	return (0);
-}
+	size_t	in_a;
+	size_t	in_b;
+	int		val_a;
+	int		val_b;
 
-void	ft_print_stack_cnt(char **stack)
-{
-	size_t	cnt;
-
-	cnt = 0;
-	if (!stack)
-		ft_printf("\n\033[1;31mNULL & NULL pointer");
-	else
+	in_a = 0;
+	in_b = 0;
+	val_a = 0;
+	val_b = 0;
+	if (a)
 	{
-		if (!stack[cnt])
-			ft_printf("\n\033[1;31mNULL but the pointer is not NULL");
-		while (stack[cnt])
-		{
-			ft_printf("[%u]: %s\t", cnt, stack[cnt]);
-			cnt++;
-		}
-		ft_printf("\n\033[1;33mRemember to free: %p\033[1;37m\n", stack);
+		in_a = a->index;
+		val_a = a->value;
 	}
+	if (b)
+	{
+		in_b = b->index;
+		val_b = b->value;
+	}
+	if (a && b)
+		ft_printf("\t [%u] %i\t\t [%u] %i\n", in_a, val_a, in_b, val_b);
+	else if (a && !b)
+		ft_printf("\t [%u] %i\t\t NULL\n", in_a, val_a);
+	else if (!a && b)
+		ft_printf("\t NULL\t\t [%u] %i\n", in_b, val_b);
 }
 
-void	ft_print_stat(char **stack_a, char **stack_b)
+void	ft_print_structs(t_stack *a, t_stack *b)
 {
-	size_t	ln_a;
-	size_t	ln_b;
+	size_t	i;
+	size_t	max;
 
-	ln_a = ft_arr_strlen(stack_a);
-	ln_b = ft_arr_strlen(stack_b);
+	i = 0;
+	if (a->len > b->len)
+		max = a->len;
+	else
+		max = b->len;
+	ft_printf("\n\tStack A\t\tStack B\n\t-------\t\t-------\n");
+	while (i < max)
+	{
+		if (i < a->len && i < b->len)
+			ft_print_piece(&a->arr[i], &b->arr[i]);
+		else if (i < a->len && i >= b->len)
+			ft_print_piece(&a->arr[i], NULL);
+		else if (i >= a->len && i < b->len)
+			ft_print_piece(NULL, &b->arr[i]);
+		else
+			ft_printf("\t NULL\t\t NULL\n");
+		i++;
+	}
+	ft_printf("\t--------\t-------\n");
+}
+
+void	ft_print_stat(t_stack *a, t_stack *b)
+{
 	ft_printf("\033[1;35m\n ~ Actual status ~\n\n");
 	ft_printf("\033[1;33mStack A is Sorted: ");
-	if (ft_is_sorted(stack_a))
+	if (ft_is_sorted(a))
 		ft_printf("\033[1;32mYES\n");
 	else
 		ft_printf("\033[1;31mNO\n");
-	ft_printf("\n\033[1;37mActual len of Stack_A: %u\n", ln_a);
-	ft_printf("\033[1;37mActual len of Stack_B: %u\n", ln_b);
-	ft_printf("\n\033[1;37mContent of Stack_A:\n");
-	ft_print_stack_cnt(stack_a);
-	ft_printf("\nMin is in pose: %u\n", ft_where_is_min(stack_a));
-	ft_printf("Max is in pose: %u\n", ft_where_is_max(stack_a));
-	ft_printf("\n\n\033[1;37mContent of Stack_B:\n");
-	ft_print_stack_cnt(stack_b);
+	ft_printf("\n\033[1;37mActual len of Stack_A: %u\n", a->len);
+	ft_printf("\033[1;37mActual len of Stack_B: %u\n", b->len);
+	ft_print_structs(a, b);
 	ft_printf("\033[1;35m\n ~ ~~~~~~~~~~~~~~ ~\n\n");
 }
 
-void	ft_print_checker(char **stack_a, char **stack_b)
+void	ft_print_chunk(t_chunk *chunk)
+{
+	size_t	act;
+	size_t	min;
+	size_t	max;
+
+	act = 0;
+	ft_printf("\033[1;35m\n ~ Chunks ~\n\n");
+	ft_printf("\033[1;37mNum of chunks: %u\t", chunk->chunks);
+	ft_printf("Act chunk: %u\n\n", chunk->act_chunk);
+	while (act < chunk->chunks)
+	{
+		min = chunk->g_chunks[act].min;
+		max = chunk->g_chunks[act].max;
+		ft_printf("Chunk group: %u\t Min: %u\t Max: %u\n", act, min, max);
+		act++;
+	}
+	ft_printf("\n\033[1;35m ~ --------- ~\n");
+}
+
+void	ft_print_checker(t_stack *a, t_stack *b)
 {
 	int	sorted;
 	int	null;
 
-	null = ft_is_null(stack_b);
-	sorted = ft_is_sorted(stack_a);
+	null = ft_is_null(b);
+	sorted = ft_is_sorted(a);
 	ft_printf("\033[1;37m\n ~ Checker ~\n\n");
 	ft_printf("\033[1;33mStack A is Sorted: ");
 	if (sorted)

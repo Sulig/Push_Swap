@@ -6,89 +6,53 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:04:06 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 17:31:03 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:06:27 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_reverse_a(char **stack_a)
+void	ft_reverse(t_stack *s)
 {
-	long	act;
-	long	bef;
-	char	*last;
+	size_t	act;
+	size_t	bef;
+	t_piece	last;
 
-	if (stack_a)
+	if (s->len)
 	{
-		last = NULL;
-		act = (long) ft_arr_strlen(stack_a) - 1;
-		last = stack_a[act];
-		while (stack_a[act])
+		last = s->arr[s->len - 1];
+		act = s->len;
+		while (act--)
 		{
-			if (act - 1 > -1)
-				bef = act - 1;
-			else
-				break ;
-			stack_a[act] = stack_a[bef];
-			act--;
+			bef = act - 1;
+			if (bef < s->len)
+				s->arr[act] = s->arr[bef];
 		}
-		stack_a[0] = last;
+		s->arr[0] = last;
+	}
+}
+
+void	ft_rra(t_stack *a)
+{
+	if (a->len)
+	{
+		ft_reverse(a);
 		ft_printf("rra\n");
 	}
 }
 
-void	ft_reverse_b(char **stack_b)
+void	ft_rrb(t_stack *b)
 {
-	long	act;
-	long	bef;
-	char	*last;
-
-	if (stack_b)
+	if (b->len)
 	{
-		last = NULL;
-		act = (long) ft_arr_strlen(stack_b) - 1;
-		last = stack_b[act];
-		while (stack_b[act])
-		{
-			if (act - 1 > -1)
-				bef = act - 1;
-			else
-				break ;
-			stack_b[act] = stack_b[bef];
-			act--;
-		}
-		stack_b[0] = last;
+		ft_reverse(b);
 		ft_printf("rrb\n");
 	}
 }
 
-void	ft_reverse(char **stack)
+void	ft_rrr(t_stack *a, t_stack *b)
 {
-	long	act;
-	long	bef;
-	char	*last;
-
-	if (stack)
-	{
-		last = NULL;
-		act = (long) ft_arr_strlen(stack) - 1;
-		last = stack[act];
-		while (stack[act])
-		{
-			if (act - 1 > -1)
-				bef = act - 1;
-			else
-				break ;
-			stack[act] = stack[bef];
-			act--;
-		}
-		stack[0] = last;
-	}
-}
-
-void	ft_reverse_r(char **stack_a, char **stack_b)
-{
-	ft_reverse(stack_a);
-	ft_reverse(stack_b);
+	ft_reverse(a);
+	ft_reverse(b);
 	ft_printf("rrr\n");
 }

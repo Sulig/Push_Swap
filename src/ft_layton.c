@@ -6,87 +6,92 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/22 11:56:44 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:43:17 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_tree(char **stack_a)
+void	ft_sort_tree(t_stack *a)
 {
 	size_t	min;
 	size_t	max;
 
-	min = ft_where_is_min(stack_a);
-	max = ft_where_is_max(stack_a);
+	min = ft_where_is(a, 0, '<');
+	max = ft_where_is(a, 0, '>');
 	if (min == 1 && max == 2)
-		ft_swap_a(stack_a);
+		ft_sa(a);
 	else if (min == 1 && max == 0)
-		ft_rotate_a(stack_a);
+		ft_ra(a);
 	else if (min == 2 && max == 1)
-		ft_reverse_a(stack_a);
+		ft_rra(a);
 	else if (min == 0 && max == 1)
 	{
-		ft_swap_a(stack_a);
-		ft_rotate_a(stack_a);
+		ft_sa(a);
+		ft_ra(a);
 	}
 	else if (min == 2 && max == 0)
 	{
-		ft_swap_a(stack_a);
-		ft_reverse_a(stack_a);
+		ft_sa(a);
+		ft_rra(a);
 	}
 }
 
-void	ft_min_in_first(char **stack)
+void	ft_in_first(t_stack *s, t_piece first, char move)
 {
-	size_t	min;
-	size_t	len;
+	size_t	pos;
 
-	min = ft_where_is_min(stack);
-	len = ft_arr_strlen(stack);
-	if (min < (len / 2))
+	pos = ft_where_is(s, first.value, '\0');
+	if (pos < ((s->len - 1) / 2))
 	{
-		while (min != 0)
+		while (s->arr[0] != first)
 		{
-			ft_rotate_a(stack);
-			min = ft_where_is_min(stack);
+			if (move == 'a')
+				ft_ra(s);
+			else if (move == 'b')
+				ft_rb(s);
 		}
 	}
 	else
 	{
-		while (min != 0)
+		while (s->arr[0] != first)
 		{
-			ft_reverse_a(stack);
-			min = ft_where_is_min(stack);
+			if (move == 'a')
+				ft_rra(s);
+			else if (move == 'b')
+				ft_rrb(s);
 		}
 	}
 }
 
-void	ft_sort_five(char ***stack_a, char ***stack_b)
+void	ft_sort_five(t_stack *a, t_stack *b)
 {
-	ft_min_in_first(*stack_a);
-	ft_push_b(stack_a, stack_b);
-	ft_sort_four(stack_a, stack_b);
-	ft_push_a(stack_a, stack_b);
+	size_t	pos;
+
+	pos = ft_where_is(a, 0, '<');
+	ft_in_first(a, a->arr[pos], 'a');
+	if (!ft_is_sorted(a))
+	{
+		ft_pb(a, b);
+		ft_sort_four(a, b);
+		ft_pa(a, b);
+	}
 }
 
-void	ft_switch_lenght(char ***stack_a, char ***stack_b)
+void	ft_switch_lenght(t_stack *a, t_stack *b)
 {
-	size_t	len;
-
-	len = ft_arr_strlen(*stack_a);
-	if (ft_is_sorted(*stack_a))
+	if (ft_is_sorted(a))
 		return ;
-	if (ft_can_sort_in_one(*stack_a))
+	else if (a->len == 2)
+		ft_sa(a);
+	else if (a->len == 3)
+		ft_sort_tree(a);
+	else if (ft_can_sort_in_one(a))
 		return ;
-	else if (len == 2)
-		ft_swap_a(*stack_a);
-	else if (len == 3)
-		ft_sort_tree(*stack_a);
-	else if (len == 4)
-		ft_sort_four(stack_a, stack_b);
-	else if (len == 5)
-		ft_sort_five(stack_a, stack_b);
+	else if (a->len == 4)
+		ft_sort_four(a, b);
+	else if (a->len == 5)
+		ft_sort_five(a, b);
 	else
-		ft_big_sort(stack_a, stack_b);
+		ft_big_sort(a, b);
 }

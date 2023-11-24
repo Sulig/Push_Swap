@@ -5,89 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 19:12:00 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 18:05:59 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 17:15:28 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/23 17:39:11 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	**ft_push(char **stack, char *first)
+int	ft_push(t_stack *s, t_piece first)
 {
-	size_t	cnt;
-	size_t	ln;
-	char	**new;
+	size_t	i;
+	size_t	j;
+	t_piece	*new;
 
-	ln = 1;
-	cnt = 0;
-	new = NULL;
-	new = ft_calloc(sizeof(char *), ft_arr_strlen(stack) + 2);
+	i = 0;
+	j = 1;
+	new = ft_calloc(sizeof(t_piece), s->len + 2);
 	if (!new)
-		return (NULL);
-	new[0] = ft_strdup(first);
-	if (stack)
+		return (0);
+	new[0] = first;
+	while (i < s->len)
 	{
-		while (stack[cnt])
-		{
-			new[ln] = ft_strdup(stack[cnt]);
-			cnt++;
-			ln++;
-		}
+		new[j] = s->arr[i];
+		i++;
+		j++;
 	}
-	return (new);
+	free(s->arr);
+	s->arr = new;
+	s->len++;
+	return (1);
 }
 
-static char	**ft_pop(char **stack)
+int	ft_pop(t_stack *s)
 {
-	char	**new;
-	size_t	cnt;
-	size_t	ln;
+	size_t	i;
+	size_t	j;
+	t_piece	*new;
 
-	ln = 0;
-	cnt = 1;
-	new = NULL;
-	new = ft_calloc(sizeof(char *), ft_arr_strlen(stack));
+	i = 1;
+	j = 0;
+	new = ft_calloc(sizeof(t_piece), s->len);
 	if (!new)
-		return (NULL);
-	while (stack[cnt])
+		return (0);
+	while (i < s->len)
 	{
-		new[ln] = ft_strdup(stack[cnt]);
-		cnt++;
-		ln++;
+		new[j] = s->arr[i];
+		i++;
+		j++;
 	}
-	return (new);
+	free(s->arr);
+	s->arr = new;
+	s->len--;
+	return (1);
 }
 
-void	ft_push_a(char ***stack_a, char ***stack_b)
+void	ft_pa(t_stack *a, t_stack *b)
 {
-	char	**new_a;
-	char	**new_b;
-
-	if (ft_arr_strlen(*stack_b))
+	if (b->len)
 	{
-		new_b = ft_pop(stack_b[0]);
-		new_a = ft_push(*stack_a, stack_b[0][0]);
-		*stack_a = ft_auto_free_arr(*stack_a);
-		stack_a[0] = new_a;
-		*stack_b = ft_auto_free_arr(*stack_b);
-		stack_b[0] = new_b;
-		ft_printf("pa\n");
+		if (ft_push(a, b->arr[0]))
+			if (ft_pop(b))
+				ft_printf("pa\n");
 	}
 }
 
-void	ft_push_b(char ***stack_a, char ***stack_b)
+void	ft_pb(t_stack *a, t_stack *b)
 {
-	char	**new_a;
-	char	**new_b;
-
-	if (ft_arr_strlen(*stack_a))
+	if (a->len)
 	{
-		new_a = ft_pop(stack_a[0]);
-		new_b = ft_push(*stack_b, stack_a[0][0]);
-		stack_a[0] = ft_auto_free_arr(*stack_a);
-		stack_a[0] = new_a;
-		stack_b[0] = ft_auto_free_arr(*stack_b);
-		stack_b[0] = new_b;
-		ft_printf("pb\n");
+		if (ft_push(b, a->arr[0]))
+			if (ft_pop(a))
+				ft_printf("pb\n");
 	}
 }

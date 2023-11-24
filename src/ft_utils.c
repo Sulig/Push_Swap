@@ -5,110 +5,90 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 18:28:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 20:26:45 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 15:49:52 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/24 11:43:44 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_is_sorted(char **stack)
+int	ft_is_null(t_stack *s)
+{
+	if (!s)
+		return (1);
+	if (!s->arr)
+		return (1);
+	if (!s->len)
+		return (1);
+	return (0);
+}
+
+int	ft_is_sorted(t_stack *stack)
 {
 	size_t	ln;
-	size_t	next;
-	int		st;
-	int		nx;
+	size_t	nx;
 	int		ok;
 
 	ok = 1;
 	ln = 0;
 	if (!stack)
 		return (0);
-	while (stack[ln])
+	while (ln < stack->len)
 	{
-		st = ft_atoi(stack[ln]);
-		next = ln + 1;
-		while (stack[next])
+		nx = ln + 1;
+		while (nx < stack->len)
 		{
-			nx = ft_atoi(stack[next]);
-			if (st > nx)
+			if (stack->arr[ln].value > stack->arr[nx].value)
 				ok = 0;
-			next++;
+			nx++;
 		}
 		ln++;
 	}
 	return (ok);
 }
 
-int	ft_diference_of_num(char *num, char *other)
+int	ft_is_sorted_inverse(t_stack *stack)
 {
-	int	num_p;
-	int	other_p;
+	size_t	ln;
+	size_t	nx;
+	int		ok;
 
-	num_p = ft_atoi(num);
-	other_p = ft_atoi(other);
-	return (num_p - other_p);
-}
-
-int	ft_is_smaller_than(char *num, char *other)
-{
-	int	num_p;
-	int	other_p;
-
-	num_p = ft_atoi(num);
-	other_p = ft_atoi(other);
-	if (num_p < other_p)
-		return (1);
-	else
-		return (0);
-}
-
-size_t	ft_where_is_min(char **stack)
-{
-	size_t	cnt;
-	size_t	pos;
-	int		act;
-	int		min;
-
-	cnt = 0;
-	pos = 0;
+	ok = 1;
+	ln = stack->len;
 	if (!stack)
 		return (0);
-	min = ft_atoi(stack[0]);
-	while (stack[cnt])
+	while (ln--)
 	{
-		act = ft_atoi(stack[cnt]);
-		if (act < min)
-		{
-			min = act;
-			pos = cnt;
-		}
-		cnt++;
+		nx = ln;
+		while (nx--)
+			if (stack->arr[ln].value > stack->arr[nx].value)
+				ok = 0;
 	}
-	return (pos);
+	return (ok);
 }
 
-size_t	ft_where_is_max(char **stack)
+int	ft_where_is(t_stack *stack, int val, char c)
 {
-	size_t	cnt;
+	size_t	i;
 	size_t	pos;
-	int		act;
-	int		max;
 
-	cnt = 0;
+	i = 0;
 	pos = 0;
-	if (!stack)
-		return (0);
-	max = ft_atoi(stack[0]);
-	while (stack[cnt])
+	if (!c)
 	{
-		act = ft_atoi(stack[cnt]);
-		if (act > max)
-		{
-			max = act;
-			pos = cnt;
-		}
-		cnt++;
+		while (stack->arr[i].value != val)
+			i++;
+		return (i);
+	}
+	while (i < stack->len)
+	{
+		if (c == '<')
+			if (stack->arr[i].index < stack->arr[pos].index)
+				pos = i;
+		if (c == '>')
+			if (stack->arr[i].index > stack->arr[pos].index)
+				pos = i;
+		i++;
 	}
 	return (pos);
 }

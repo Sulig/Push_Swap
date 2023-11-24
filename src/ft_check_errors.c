@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 13:22:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 17:49:13 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 14:42:51 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/23 15:49:43 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,29 +92,28 @@ int	ft_check_max(char **arr)
 	return (1);
 }
 
-int	ft_check_double(char **stack)
+int	ft_check_double(char *joined)
 {
 	size_t	ln;
 	size_t	next;
-	int		st;
-	int		nx;
+	char	**stack;
 	int		ok;
 
 	ok = 1;
 	ln = 0;
+	stack = ft_split(joined, ' ');
 	while (stack[ln])
 	{
-		st = ft_atoi(stack[ln]);
 		next = ln + 1;
 		while (stack[next])
 		{
-			nx = ft_atoi(stack[next]);
-			if (st == nx)
+			if (ft_atoi(stack[ln]) == ft_atoi(stack[next]))
 				ok = 0;
 			next++;
 		}
 		ln++;
 	}
+	stack = ft_auto_free_arr(stack);
 	if (!ok)
 		ft_printf("Error\n");
 	return (ok);

@@ -5,52 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 17:57:23 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/22 20:55:48 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/24 11:58:33 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/24 14:43:10 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_calculate_mov(char **stack_b, char *num, size_t pos, t_cst_ms mov)
+static size_t	ft_decide_num_of_chunks(size_t len)
 {
-	int	max;
-	int	num_p;
+	size_t	num_of_chunks;
 
-	num_p = ft_atoi(num);
-	max = ft_atoi(stack_b[ft_where_is_max(stack_b)]);
-	mov.ra = pos;
-	mov.total = pos;
-	if ()
+	if (len > 20)
+		num_of_chunks = 4;
+	else
+		num_of_chunks = 2;
+	while (len % num_of_chunks)
+		num_of_chunks++;
+	return (num_of_chunks);
 }
 
-t_cst_ms	ft_best_move(char ***stack_a, char ***stack_b)
+void	ft_set_g_chunks(t_chunk *chunk, size_t len)
 {
-	t_cst_ms	act;
-	t_cst_ms	better;
-	size_t		cnt;
+	size_t	act;
+	size_t	sep_of;
 
-	cnt = 1;
-	ft_calculate_mov(*stack_b, *stack_a[0], 0, better);
-	while (*stack_a[cnt])
+	act = chunk->chunks;
+	chunk->act_chunk = 0;
+	sep_of = len / chunk->chunks;
+	while (act--)
 	{
-		ft_calculate_mov(*stack_b, *stack_a[cnt], cnt, act);
-		if (act.total < better.total)
-			better = act;
-		cnt++;
+		chunk->g_chunks[act].max = len;
+		chunk->g_chunks[act].g_len = sep_of;
+		len -= sep_of;
+		chunk->g_chunks[act].min = len;
 	}
-	return (better);
 }
 
-void	ft_big_sort(char ***stack_a, char ***stack_b)
+void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
 {
-	/*t_cst_ms	moves;
+	size_t	i;
+	int		pushed;
+	t_piece	to_push;
 
-	ft_push_b(stack_a, stack_b);
-	ft_push_b(stack_a, stack_b);
-	while (ft_arr_strlen(*stack_a) != 3 && !ft_is_sorted(*stack_a))
+	i = 0;
+	while (a->len && !ft_is_sorted(a))
 	{
-		moves = ft_best_move(stack_a, stack_b);
+		pushed = 0;
+		if (a->arr[i].g_chunk == chunk->act_chunk)
+		{
+			to_push = a->arr[i];
+			ft_in_first(a, to_push, 'a');
+			ft_pb(a, b);
+			chunk->g_chunks[chunk->act_chunk].g_len--;
+			pushed = 1;
+		}
+		if (!chunk->g_chunks[chunk->act_chunk].g_len)
+			chunk->act_chunk++;
+		if (!pushed)
+			i++;
+	}
+}
 
-	}*/
+void	ft_pa_and_sort(t_stack *a, t_stack *b)
+{
+	size_t	i;
+	t_piece	to_push;
+	t_piece	max;
+
+	while (b->len)
+	{
+		i = 0;
+		max = a->arr[ft_where_is(a, 0, '>')];
+		while (i < b->len)
+		{
+			if (b->arr[i].index > max.index)
+			{
+				if ((b->arr[i].index - max.index) == 1)
+				{
+					to_push = b->arr[i];
+					break ;
+				}
+			}
+			i++;
+		}
+		if (i == b->len)
+			to_push = b->arr[ft_where_is(b, 0, '>')];
+		ft_in_first(b, to_push, 'b');
+		ft_pa(a, b);
+		if (to_push.value > max.value)
+			ft_ra(a);
+	}
+}
+
+void	ft_big_sort(t_stack *a, t_stack *b)
+{
+	t_chunk	chunk;
+	t_piece	first;
+
+	if (ft_is_prime(a->len))
+	{
+		first = a->arr[ft_where_is(a, 0, '<')];
+		ft_in_first(a, first, 'a');
+		ft_pb(a, b);
+	}
+	chunk.chunks = ft_decide_num_of_chunks(a->len);
+	chunk.g_chunks = ft_calloc(sizeof(t_g_chunk), chunk.chunks);
+	if (!chunk.g_chunks)
+		return ;
+	ft_set_g_chunks(&chunk, a->len);
+	ft_set_group_of_chunk(a, &chunk);
+	ft_pb_with_chunks(a, b, &chunk);
+	ft_pa_and_sort(a, b);
 }

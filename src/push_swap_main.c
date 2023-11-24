@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 19:59:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/22 20:55:52 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 14:40:32 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/24 14:43:39 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,9 @@ static char	*ft_check_dimax(char **args)
 
 int	main(int argc, char **args)
 {
-	char	**stack_a;
-	char	**stack_b;
+	t_stack	a;
+	t_stack	b;
 	char	*join;
-
-	t_stack a;
-	t_stack b;
-
-	a.len = 0;
-	b.len = 0;
 
 	if (!ft_check_if_null_args(args, argc))
 	{
@@ -78,15 +72,13 @@ int	main(int argc, char **args)
 	join = ft_check_dimax(args);
 	if (join)
 	{
-		stack_a = ft_split(join, ' ');
-		stack_b = NULL;
-		if (stack_a)
+		if (ft_check_double(join))
 		{
-			if (ft_check_double(stack_a))
-				ft_switch_lenght(&stack_a, &stack_b);
-			stack_a = ft_auto_free_arr(stack_a);
-			if (stack_b)
-				free(stack_b);
+			if (ft_init(&a, &b, join))
+			{
+				ft_switch_lenght(&a, &b);
+				ft_free_stacks(&a, &b);
+			}
 		}
 		join = ft_free_str(join);
 	}

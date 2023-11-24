@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:52:03 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/23 18:37:45 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/24 13:58:04 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,29 @@ int	ft_init(t_stack *a, t_stack *b, char *join)
 	arr = ft_auto_free_arr(arr);
 	ft_set_index_piece(a);
 	return (1);
+}
+
+void	ft_set_group_of_chunk(t_stack *a, t_chunk *chunk)
+{
+	size_t	i;
+	size_t	act;
+	size_t	min;
+	size_t	max;
+
+	i = 0;
+	while (i < a->len)
+	{
+		act = 0;
+		while (act < chunk->chunks)
+		{
+			min = chunk->g_chunks[act].min;
+			max = chunk->g_chunks[act].max;
+			if (a->arr[i].index >= min && a->arr[i].index <= max)
+				a->arr[i].g_chunk = act;
+			act++;
+		}
+		i++;
+	}
 }
 
 int	ft_dup_stack(t_stack *s, t_stack *to_dup)

@@ -6,69 +6,62 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:13:24 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/16 13:14:41 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/24 11:58:11 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_sort_in_one(char **stack_a)
+static int	ft_sort_in_one(t_stack *a)
 {
-	size_t	min;
-	size_t	max;
-
-	min = ft_where_is_min(stack_a);
-	max = ft_where_is_max(stack_a);
-	if (min == 1 && max == 3)
-		if (ft_is_smaller_than(stack_a[0], stack_a[2]))
-			ft_swap_a(stack_a);
-	if (min == 1 && max == 0)
-		if (ft_is_smaller_than(stack_a[2], stack_a[3]))
-			ft_rotate_a(stack_a);
-	if (min == 3 && max == 2)
-		if (ft_is_smaller_than(stack_a[0], stack_a[1]))
-			ft_reverse_a(stack_a);
-	if (ft_is_sorted(stack_a))
+	if (a->arr[0].index == 1 && a->arr[1].index == 0)
+		if (a->arr[2].index == 2)
+			ft_sa(a);
+	if (a->arr[0].index == 1 && a->arr[1].index == 2)
+		if (a->arr[2].index == 3)
+			ft_rra(a);
+	if (a->arr[0].index == 3 && a->arr[1].index == 0)
+		if (a->arr[2].index == 1)
+			ft_ra(a);
+	if (ft_is_sorted(a))
 		return (1);
 	return (0);
 }
 
-static int	ft_sort_in_two(char **stack_a)
+static int	ft_sort_in_two(t_stack *a)
 {
-	size_t	min;
-	size_t	max;
-
-	min = ft_where_is_min(stack_a);
-	max = ft_where_is_max(stack_a);
-	if (min == 3 && max == 2)
-		if (!ft_is_smaller_than(stack_a[0], stack_a[1]))
-			ft_swap_a(stack_a);
-	if (min == 3 && max == 1)
-		if (ft_is_smaller_than(stack_a[0], stack_a[2]))
-			ft_swap_a(stack_a);
-	if (min == 0 && max == 1)
-		if (ft_is_smaller_than(stack_a[2], stack_a[3]))
-			ft_swap_a(stack_a);
-	return (ft_sort_in_one(stack_a));
+	if (a->arr[0].index == 0 && a->arr[1].index == 2)
+		if (a->arr[2].index == 3)
+			ft_rra(a);
+	if (a->arr[0].index == 0 && a->arr[1].index == 3)
+		if (a->arr[2].index == 1)
+			ft_sa(a);
+	if (a->arr[0].index == 2 && a->arr[1].index == 1)
+		if (a->arr[2].index == 3)
+			ft_sa(a);
+	if (a->arr[0].index == 2 && a->arr[1].index == 3)
+		if (a->arr[2].index == 0)
+			ft_rra(a);
+	return (ft_sort_in_one(a));
 }
 
-void	ft_sort_four(char ***stack_a, char ***stack_b)
+void	ft_sort_four(t_stack *a, t_stack *b)
 {
 	size_t	min;
 
-	min = ft_where_is_min(*stack_a);
-	if (ft_sort_in_two(*stack_a))
+	min = ft_where_is(a, 0, '<');
+	if (ft_sort_in_two(a))
 		return ;
 	if (min == 1)
-		ft_swap_a(*stack_a);
+		ft_sa(a);
 	else if (min == 3)
-		ft_reverse_a(*stack_a);
+		ft_rra(a);
 	else if (min == 2)
 	{
-		ft_rotate_a(*stack_a);
-		ft_rotate_a(*stack_a);
+		ft_ra(a);
+		ft_ra(a);
 	}
-	ft_push_b(stack_a, stack_b);
-	ft_sort_tree(*stack_a);
-	ft_push_a(stack_a, stack_b);
+	ft_pb(a, b);
+	ft_sort_tree(a);
+	ft_pa(a, b);
 }

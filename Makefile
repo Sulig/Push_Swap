@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/23 20:29:21 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/24 14:43:23 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 BONUS = checker
 
-DEF = 2 7 1
+DEF = 3 4 5 1 2 6 7 0 9 10
 # ------------------ #
 # Flags:
 
@@ -23,7 +23,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 # ------------------ #
 # Directories:
 
-DIR = ./new_src
+DIR = ./src
 DIRB = ./bonus
 LIBFT = ./Libft
 # ------------------- #
@@ -34,11 +34,8 @@ MAK = Makefile
 ARL = $(LIBFT)/libft.a
 
 LIB = push_swap.h
-#SRC = push_swap_main ft_check_errors ft_print_stat ft_push ft_reverse ft_rotate\
-	  ft_swap ft_utils ft_layton ft_sort_four ft_sort_in_one ft_big_sort
-
 SRC = push_swap_main ft_check_errors ft_man_struct ft_push ft_reverse ft_rotate\
-	  ft_swap ft_print_stat ft_utils ft_sort_in_one ft_sort_four ft_layton
+	  ft_swap ft_print_stat ft_utils ft_sort_in_one ft_sort_four ft_big_sort ft_layton
 
 LIBB = push_swap_bonus.h
 SRCB = push_swap_main_bonus ft_check_errors_bonus ft_push_bonus ft_reverse_bonus\

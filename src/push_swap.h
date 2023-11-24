@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 20:00:36 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/22 20:52:24 by sadoming         ###   ########.fr       */
+/*   Created: 2023/11/23 14:37:46 by sadoming          #+#    #+#             */
+/*   Updated: 2023/11/24 14:43:28 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,71 +15,78 @@
 
 # include "../Libft/libft.h"
 
-struct typedef s_cost_moves
-{
-	size_t		ra;
-	size_t		rb;
-	size_t		rr;
-	size_t		rra;
-	size_t		rrb;
-	size_t		rrr;
-	size_t		total;
-}				t_cst_ms;
-
-
-
 typedef struct s_piece
 {
-	int value;
-	int index;
-} t_piece;
+	int			value;
+	size_t		index;
+	size_t		g_chunk;
+}				t_piece;
 
-typedef struct s_tack
+typedef struct s_stack
 {
-	int len;
-	t_piece  *arr;
-}
+	size_t		len;
+	t_piece		*arr;
+}				t_stack;
+
+typedef struct s_g_chunk
+{
+	size_t		min;
+	size_t		max;
+	size_t		g_len;
+}				t_g_chunk;
+
+typedef struct s_chunk
+{
+	size_t		chunks;
+	size_t		act_chunk;
+	t_g_chunk	*g_chunks;
+}				t_chunk;
 
 int		ft_check_if_null_args(char **args, int argc);
 int		ft_check_digit(char *str);
 int		ft_check_max(char **arr);
-int		ft_check_double(char **stack);
+int		ft_check_double(char *joined);
 
-int		ft_is_null(char **stack);
-int		ft_is_sorted(char **stack);
-int		ft_diference_of_num(char *num, char *other);
-int		ft_is_smaller_than(char *num, char *other);
-int		ft_can_sort_in_one(char **stack);
-size_t	ft_where_is_min(char **stack);
-size_t	ft_where_is_max(char **stack);
+int		ft_is_null(t_stack *s);
+int		ft_is_sorted(t_stack *stack);
+int		ft_is_sorted_inverse(t_stack *stack);
+int		ft_where_is(t_stack *stack, int val, char c);
+int		ft_can_sort_in_one(t_stack *s);
 
-void	ft_push_a(char ***stack_a, char ***stack_b);
-void	ft_push_b(char ***stack_a, char ***stack_b);
+void	ft_pa(t_stack *a, t_stack *b);
+void	ft_pb(t_stack *a, t_stack *b);
 
-void	ft_rotate(char **stack);
-void	ft_rotate_a(char **stack_a);
-void	ft_rotate_b(char **stack_b);
-void	ft_rotate_r(char **stack_a, char **stack_b);
+void	ft_rotate(t_stack *s);
+void	ft_ra(t_stack *a);
+void	ft_rb(t_stack *b);
+void	ft_rr(t_stack *a, t_stack *b);
 
-void	ft_reverse(char **stack);
-void	ft_reverse_a(char **stack_a);
-void	ft_reverse_b(char **stack_b);
-void	ft_reverse_r(char **stack_a, char **stack_b);
+void	ft_reverse(t_stack *s);
+void	ft_rra(t_stack *a);
+void	ft_rrb(t_stack *b);
+void	ft_rrr(t_stack *a, t_stack *b);
 
-void	ft_swap(char **stack);
-void	ft_swap_a(char **stack_a);
-void	ft_swap_b(char **stack_b);
-void	ft_swap_s(char **stack_a, char **stack_b);
+void	ft_swap(t_stack *s);
+void	ft_sa(t_stack *a);
+void	ft_sb(t_stack *b);
+void	ft_ss(t_stack *a, t_stack *b);
 
-void	ft_sort_tree(char **stack_a);
-void	ft_sort_four(char ***stack_a, char ***stack_b);
-void	ft_sort_five(char ***stack_a, char ***stack_b);
-void	ft_big_sort(char ***stack_a, char ***stack_b);
-void	ft_min_in_first(char **stack);
-void	ft_switch_lenght(char ***stack_a, char ***stack_b);
+void	ft_sort_tree(t_stack *a);
+void	ft_sort_four(t_stack *a, t_stack *b);
+void	ft_in_first(t_stack *s, t_piece first, char move);
+void	ft_sort_five(t_stack *a, t_stack *b);
+void	ft_big_sort(t_stack *a, t_stack *b);
+void	ft_switch_lenght(t_stack *a, t_stack *b);
 
-void	ft_print_stack_cnt(char **stack);
-void	ft_print_stat(char **stack_a, char **stack_b);
-void	ft_print_checker(char **stack_a, char **stack_b);
+void	ft_free_stacks(t_stack *a, t_stack *b);
+int		ft_init(t_stack *a, t_stack *b, char *join);
+void	ft_set_group_of_chunk(t_stack *a, t_chunk *chunk);
+int		ft_dup_stack(t_stack *s, t_stack *to_dup);
+
+void	ft_print_piece(t_piece *a, t_piece *b);
+void	ft_print_structs(t_stack *a, t_stack *b);
+void	ft_print_stat(t_stack *a, t_stack *b);
+void	ft_print_chunk(t_chunk *chunk);
+void	ft_print_checker(t_stack *a, t_stack *b);
 
 #endif
