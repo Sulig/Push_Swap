@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:53:41 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 16:27:27 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:41:31 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_pa(t_stack *a, t_stack *b)
 	if (b->len)
 	{
 		if (ft_push(a, b->arr[0]))
-		  ft_pop(b);
+			ft_pop(b);
 	}
 }
 
@@ -73,6 +73,6 @@ void	ft_pb(t_stack *a, t_stack *b)
 	if (a->len)
 	{
 		if (ft_push(b, a->arr[0]))
-		  ft_pop(a);
+			ft_pop(a);
 	}
 }

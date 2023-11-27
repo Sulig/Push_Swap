@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:58:26 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 16:17:25 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:26:53 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_do_while(t_stack *a, t_stack *b)
 	{
 		if (!ft_switch_move(a, b, move))
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			free(move);
 			return ;
 		}

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:42:51 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/23 15:49:43 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:38:10 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,24 @@ static int	ft_is_acceptable(int c)
 int	ft_check_digit(char *str)
 {
 	size_t	cnt;
-	size_t	nums;
 
-	nums = 0;
 	cnt = 0;
 	while (str[cnt])
 	{
 		if (!ft_is_acceptable(str[cnt]))
-			nums = 0;
+			return (0);
 		else if (ft_is_acceptable(str[cnt]) == 2)
 		{
 			if (str[cnt + 1] == ' ' || !str[cnt + 1])
-				nums = 0;
+				return (0);
 			if (ft_is_acceptable(str[cnt + 1]) == 2)
-				nums = 0;
+				return (0);
 			if (ft_is_acceptable(str[cnt - 1]) == 1)
-				nums = 0;
+				return (0);
 		}
-		else if (ft_is_acceptable(str[cnt]) == 1)
-			nums++;
 		cnt++;
 	}
-	if (!nums)
-		ft_printf("Error\n");
-	return (nums);
+	return (1);
 }
 
 int	ft_check_max(char **arr)
@@ -84,7 +78,7 @@ int	ft_check_max(char **arr)
 		act = ft_atol(arr[cnt]);
 		if (act < -2147483648 || act > 2147483647)
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			return (0);
 		}
 		cnt++;
@@ -115,6 +109,6 @@ int	ft_check_double(char *joined)
 	}
 	stack = ft_auto_free_arr(stack);
 	if (!ok)
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 	return (ok);
 }

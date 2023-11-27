@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:06:37 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/23 17:14:54 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:17:46 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_rb(t_stack *b)
 	if (b->len > 1)
 	{
 		ft_rotate(b);
-		ft_printf("rr\n");
+		ft_printf("rb\n");
 	}
 }
 

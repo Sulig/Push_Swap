@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:58:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 15:56:41 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:40:27 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ static size_t	ft_decide_num_of_chunks(size_t len)
 {
 	size_t	num_of_chunks;
 
-	if (len > 20)
-		num_of_chunks = 4;
+	if (len > 50 && len <= 100)
+		num_of_chunks = 5;
+	else if (len > 100)
+		num_of_chunks = 20;
 	else
 		num_of_chunks = 2;
 	while (len % num_of_chunks)
@@ -73,30 +75,13 @@ void	ft_pa_and_sort(t_stack *a, t_stack *b)
 {
 	size_t	i;
 	t_piece	to_push;
-	t_piece	max;
 
 	while (b->len)
 	{
 		i = 0;
-		max = a->arr[ft_where_is(a, 0, '>')];
-		while (i < b->len)
-		{
-			if (b->arr[i].index > max.index)
-			{
-				if ((b->arr[i].index - max.index) == 1)
-				{
-					to_push = b->arr[i];
-					break ;
-				}
-			}
-			i++;
-		}
-		if (i == b->len)
-			to_push = b->arr[ft_where_is(b, 0, '>')];
+		to_push = b->arr[ft_where_is(b, 0, '>')];
 		ft_in_first(b, to_push, 'b');
 		ft_pa(a, b);
-		if (to_push.value > max.value)
-			ft_ra(a);
 	}
 }
 
@@ -105,6 +90,7 @@ void	ft_big_sort(t_stack *a, t_stack *b)
 	t_chunk	chunk;
 	t_piece	first;
 
+	
 	if (ft_is_prime(a->len))
 	{
 		first = a->arr[ft_where_is(a, 0, '<')];
