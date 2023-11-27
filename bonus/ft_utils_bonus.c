@@ -6,115 +6,104 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:58:26 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/23 14:36:43 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:17:25 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-int	ft_is_null(char **stack)
+int	ft_is_null(t_stack *s)
 {
-	if (!stack)
+	if (!s)
 		return (1);
-	if (!stack[0])
+	if (!s->arr)
+		return (1);
+	if (!s->len)
 		return (1);
 	return (0);
 }
 
-int	ft_is_sorted(char **stack)
+int	ft_is_sorted(t_stack *stack)
 {
 	size_t	ln;
-	size_t	next;
-	int		st;
-	int		nx;
+	size_t	nx;
 	int		ok;
 
 	ok = 1;
 	ln = 0;
 	if (!stack)
 		return (0);
-	while (stack[ln])
+	while (ln < stack->len)
 	{
-		st = ft_atoi(stack[ln]);
-		next = ln + 1;
-		while (stack[next])
+		nx = ln + 1;
+		while (nx < stack->len)
 		{
-			nx = ft_atoi(stack[next]);
-			if (st > nx)
+			if (stack->arr[ln].value > stack->arr[nx].value)
 				ok = 0;
-			next++;
+			nx++;
 		}
 		ln++;
 	}
 	return (ok);
 }
 
-void	ft_checker(char **stack_a, char **stack_b)
+void	ft_checker(t_stack *a, t_stack *b)
 {
 	int	sorted;
 	int	null;
 
-	null = ft_is_null(stack_b);
-	sorted = ft_is_sorted(stack_a);
+	null = ft_is_null(b);
+	sorted = ft_is_sorted(a);
 	if (sorted && null)
 		ft_printf("\033[1;32mOK\n");
 	else
 		ft_printf("\033[1;31mKO\n");
 }
 
-int	ft_switch_move(char ***stack_a, char ***stack_b, char *move)
+int	ft_switch_move(t_stack *a, t_stack *b, char *move)
 {
 	if (my_strcmp(move, "sa\n"))
-		ft_swap_a(*stack_a);
+		ft_sa(a);
 	else if (my_strcmp(move, "sb\n"))
-		ft_swap_b(*stack_b);
+		ft_sb(b);
 	else if (my_strcmp(move, "ss\n"))
-		ft_swap_s(*stack_a, *stack_b);
+		ft_ss(a, b);
 	else if (my_strcmp(move, "pa\n"))
-		ft_push_a(stack_a, stack_b);
+		ft_pa(a, b);
 	else if (my_strcmp(move, "pb\n"))
-		ft_push_b(stack_a, stack_b);
+		ft_pb(a, b);
 	else if (my_strcmp(move, "ra\n"))
-		ft_rotate_a(*stack_a);
+		ft_ra(a);
 	else if (my_strcmp(move, "rb\n"))
-		ft_rotate_b(*stack_b);
+		ft_rb(b);
 	else if (my_strcmp(move, "rr\n"))
-		ft_rotate_r(*stack_a, *stack_b);
+		ft_rr(a, b);
 	else if (my_strcmp(move, "rra\n"))
-		ft_reverse_a(*stack_a);
+		ft_rra(a);
 	else if (my_strcmp(move, "rrb\n"))
-		ft_reverse_b(*stack_b);
+		ft_rrb(b);
 	else if (my_strcmp(move, "rrr\n"))
-		ft_reverse_r(*stack_a, *stack_b);
+		ft_rrr(a, b);
 	else
 		return (0);
 	return (1);
 }
 
-void	ft_do_while(char ***stack_a)
+void	ft_do_while(t_stack *a, t_stack *b)
 {
-	char	**stack_b;
 	char	*move;
 
-	stack_b = NULL;
 	move = get_next_line(1);
 	while (move)
 	{
-		if (!ft_switch_move(stack_a, &stack_b, move))
+		if (!ft_switch_move(a, b, move))
 		{
 			ft_printf("Error\n");
 			free(move);
-			*stack_a = ft_auto_free_arr(*stack_a);
-			stack_b = ft_auto_free_arr(stack_b);
 			return ;
 		}
 		free(move);
 		move = get_next_line(1);
 	}
-	ft_checker(*stack_a, stack_b);
-	if (*stack_a)
-		if (*stack_a[0])
-			*stack_a = ft_auto_free_arr(*stack_a);
-	if (stack_b)
-		stack_b = ft_auto_free_arr(stack_b);
+	ft_checker(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/24 14:43:17 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:06:50 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_in_first(t_stack *s, t_piece first, char move)
 	pos = ft_where_is(s, first.value, '\0');
 	if (pos < ((s->len - 1) / 2))
 	{
-		while (s->arr[0] != first)
+		while (s->arr[0].value != first.value)
 		{
 			if (move == 'a')
 				ft_ra(s);
@@ -54,7 +54,7 @@ void	ft_in_first(t_stack *s, t_piece first, char move)
 	}
 	else
 	{
-		while (s->arr[0] != first)
+		while (s->arr[0].value != first.value)
 		{
 			if (move == 'a')
 				ft_rra(s);

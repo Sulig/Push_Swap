@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/24 14:43:23 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/27 16:25:29 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME = push_swap
 
 BONUS = checker
 
-DEF = 3 4 5 1 2 6 7 0 9 10
+DEF = 6 5 4 3 2 1
+
+#DEF = 89	40	13	77	54	28	88	84	30	61	51	18	11	32	80	8	42	9	16	93	71	26	7	73	4	65	29	76	27	46	50	15	53	47	22	31	20	72	43	60	92	99	67	56	17	57	66	70	81	98	62	41	58	83	5	23	1	64	2	19	33	90	79	59	24	100	21	6	25	78	55	12	63	86	44	3	85	82	39	95	68	35	14	45	69	87	96	97	91	34	48	75	10	38	74	49	94	36	52	37
 # ------------------ #
 # Flags:
 
@@ -38,8 +40,8 @@ SRC = push_swap_main ft_check_errors ft_man_struct ft_push ft_reverse ft_rotate\
 	  ft_swap ft_print_stat ft_utils ft_sort_in_one ft_sort_four ft_big_sort ft_layton
 
 LIBB = push_swap_bonus.h
-SRCB = push_swap_main_bonus ft_check_errors_bonus ft_push_bonus ft_reverse_bonus\
-		ft_rotate_bonus ft_swap_bonus ft_utils_bonus
+SRCB = push_swap_main_bonus ft_check_errors_bonus ft_man_structs_bonus ft_push_bonus\
+	   ft_reverse_bonus ft_rotate_bonus ft_swap_bonus ft_utils_bonus
 
 OBJ = $(addprefix $(DIR)/, $(addsuffix .o, $(SRC)))
 OBJB = $(addprefix $(DIRB)/, $(addsuffix .o, $(SRCB)))

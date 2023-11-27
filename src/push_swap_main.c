@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:40:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/24 14:43:39 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:04:18 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int argc, char **args)
 			if (ft_init(&a, &b, join))
 			{
 				ft_switch_lenght(&a, &b);
+				ft_print_checker(&a, &b);
 				ft_free_stacks(&a, &b);
 			}
 		}

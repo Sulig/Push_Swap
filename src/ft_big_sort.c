@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:58:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/24 14:43:10 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:56:41 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
 	t_piece	to_push;
 
 	i = 0;
-	while (a->len && !ft_is_sorted(a))
+	while (a->len)
 	{
 		pushed = 0;
 		if (a->arr[i].g_chunk == chunk->act_chunk)
@@ -64,6 +64,8 @@ void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
 			chunk->act_chunk++;
 		if (!pushed)
 			i++;
+		else
+			i = 0;
 	}
 }
 

@@ -6,86 +6,46 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:54:55 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 13:49:29 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:27:52 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	ft_reverse_a(char **stack_a)
+void	ft_reverse(t_stack *s)
 {
-	long	act;
-	long	bef;
-	char	*last;
+	size_t	act;
+	size_t	bef;
+	t_piece	last;
 
-	if (stack_a)
+	if (s->len)
 	{
-		last = NULL;
-		act = (long) ft_arr_strlen(stack_a) - 1;
-		last = stack_a[act];
-		while (stack_a[act])
+		last = s->arr[s->len - 1];
+		act = s->len;
+		while (act--)
 		{
-			if (act - 1 > -1)
-				bef = act - 1;
-			else
-				break ;
-			stack_a[act] = stack_a[bef];
-			act--;
+			bef = act - 1;
+			if (bef < s->len)
+				s->arr[act] = s->arr[bef];
 		}
-		stack_a[0] = last;
+		s->arr[0] = last;
 	}
 }
 
-void	ft_reverse_b(char **stack_b)
+void	ft_rra(t_stack *a)
 {
-	long	act;
-	long	bef;
-	char	*last;
-
-	if (stack_b)
-	{
-		last = NULL;
-		act = (long) ft_arr_strlen(stack_b) - 1;
-		last = stack_b[act];
-		while (stack_b[act])
-		{
-			if (act - 1 > -1)
-				bef = act - 1;
-			else
-				break ;
-			stack_b[act] = stack_b[bef];
-			act--;
-		}
-		stack_b[0] = last;
-	}
+	if (a->len)
+		ft_reverse(a);
 }
 
-static void	ft_reverse(char **stack)
+void	ft_rrb(t_stack *b)
 {
-	long	act;
-	long	bef;
-	char	*last;
-
-	if (stack)
-	{
-		last = NULL;
-		act = (long) ft_arr_strlen(stack) - 1;
-		last = stack[act];
-		while (stack[act])
-		{
-			if (act - 1 > -1)
-				bef = act - 1;
-			else
-				break ;
-			stack[act] = stack[bef];
-			act--;
-		}
-		stack[0] = last;
-	}
+	if (b->len)
+		ft_reverse(b);
 }
 
-void	ft_reverse_r(char **stack_a, char **stack_b)
+void	ft_rrr(t_stack *a, t_stack *b)
 {
-	ft_reverse(stack_a);
-	ft_reverse(stack_b);
+	ft_reverse(a);
+	ft_reverse(b);
 }
