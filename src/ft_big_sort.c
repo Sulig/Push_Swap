@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:58:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 20:40:27 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:31:10 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,62 @@
 
 static size_t	ft_decide_num_of_chunks(size_t len)
 {
-	size_t	num_of_chunks;
-
-	if (len > 50 && len <= 100)
-		num_of_chunks = 5;
-	else if (len > 100)
-		num_of_chunks = 20;
+	if (len < 25)
+		return (2);
+	else if (len <= 100)
+		return (5);
+	else if (len >= 500)
+		return (11);
 	else
-		num_of_chunks = 2;
-	while (len % num_of_chunks)
-		num_of_chunks++;
-	return (num_of_chunks);
+		return (5);
 }
 
-void	ft_set_g_chunks(t_chunk *chunk, size_t len)
+static void	ft_set_g_chunks(t_chunk *chunk, int max, int min)
 {
 	size_t	act;
+	size_t	sta_to_end;
+	size_t	end_to_sta;
 	size_t	sep_of;
 
-	act = chunk->chunks;
+	act = 0;
 	chunk->act_chunk = 0;
-	sep_of = len / chunk->chunks;
-	while (act--)
+	sta_to_end = 0;
+	end_to_sta = chunk->chunks - 1;
+	sep_of = max / chunk->chunks;
+	while (act < chunk->chunks)
 	{
-		chunk->g_chunks[act].max = len;
-		chunk->g_chunks[act].g_len = sep_of;
-		len -= sep_of;
-		chunk->g_chunks[act].min = len;
+		chunk->g_chunks[end_to_sta].max = max;
+		chunk->g_chunks[sta_to_end].min = min;
+		min += sep_of;
+		max -= sep_of;
+		sta_to_end++;
+		end_to_sta--;
+		act++;
 	}
 }
 
-void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
+static void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
 {
 	size_t	i;
-	int		pushed;
+	size_t	j;
 	t_piece	to_push;
 
-	i = 0;
 	while (a->len)
 	{
-		pushed = 0;
-		if (a->arr[i].g_chunk == chunk->act_chunk)
+		i = 0;
+		j = a->len - 1;
+		while (a->arr[i].g_chunk != chunk->act_chunk && i < a->len)
+			i++;
+		while (j && a->arr[j].g_chunk != chunk->act_chunk)
+			j--;
+		to_push = ft_decide_to_push(a, i, j);
+		if (to_push.ok)
 		{
-			to_push = a->arr[i];
 			ft_in_first(a, to_push, 'a');
 			ft_pb(a, b);
-			chunk->g_chunks[chunk->act_chunk].g_len--;
-			pushed = 1;
 		}
-		if (!chunk->g_chunks[chunk->act_chunk].g_len)
-			chunk->act_chunk++;
-		if (!pushed)
-			i++;
 		else
-			i = 0;
+			chunk->act_chunk++;
 	}
 }
 
@@ -89,8 +91,9 @@ void	ft_big_sort(t_stack *a, t_stack *b)
 {
 	t_chunk	chunk;
 	t_piece	first;
+	int		max;
 
-	
+	max = a->arr[ft_where_is(a, 0, '>')].index;
 	if (ft_is_prime(a->len))
 	{
 		first = a->arr[ft_where_is(a, 0, '<')];
@@ -101,8 +104,9 @@ void	ft_big_sort(t_stack *a, t_stack *b)
 	chunk.g_chunks = ft_calloc(sizeof(t_g_chunk), chunk.chunks);
 	if (!chunk.g_chunks)
 		return ;
-	ft_set_g_chunks(&chunk, a->len);
+	ft_set_g_chunks(&chunk, max, 0);
 	ft_set_group_of_chunk(a, &chunk);
 	ft_pb_with_chunks(a, b, &chunk);
 	ft_pa_and_sort(a, b);
+	free(chunk.g_chunks);
 }

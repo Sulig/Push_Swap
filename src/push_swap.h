@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:46 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 20:40:40 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:31:20 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_piece
 {
 	int			value;
+	int			ok;
 	size_t		index;
 	size_t		g_chunk;
 }				t_piece;
@@ -30,9 +31,8 @@ typedef struct s_stack
 
 typedef struct s_g_chunk
 {
-	size_t		min;
-	size_t		max;
-	size_t		g_len;
+	int			min;
+	int			max;
 }				t_g_chunk;
 
 typedef struct s_chunk
@@ -78,6 +78,8 @@ void	ft_sort_five(t_stack *a, t_stack *b);
 void	ft_big_sort(t_stack *a, t_stack *b);
 void	ft_switch_lenght(t_stack *a, t_stack *b);
 
+t_piece	ft_decide_to_push(t_stack *s, size_t num_1, size_t num_2);
+
 void	ft_free_stacks(t_stack *a, t_stack *b);
 int		ft_init(t_stack *a, t_stack *b, char *join);
 void	ft_set_group_of_chunk(t_stack *a, t_chunk *chunk);
@@ -86,7 +88,7 @@ int		ft_dup_stack(t_stack *s, t_stack *to_dup);
 void	ft_print_piece(t_piece *a, t_piece *b);
 void	ft_print_structs(t_stack *a, t_stack *b);
 void	ft_print_stat(t_stack *a, t_stack *b);
-void	ft_print_chunk(t_chunk *chunk);
+void	ft_print_chunk(t_chunk *chunk, t_stack *s);
 void	ft_print_checker(t_stack *a, t_stack *b);
 
 #endif

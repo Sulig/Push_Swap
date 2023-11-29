@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:43:57 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/24 14:35:39 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:47:37 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_print_stat(t_stack *a, t_stack *b)
 	ft_printf("\033[1;35m\n ~ ~~~~~~~~~~~~~~ ~\n\n");
 }
 
-void	ft_print_chunk(t_chunk *chunk)
+void	ft_print_chunk(t_chunk *chunk, t_stack *s)
 {
 	size_t	act;
 	size_t	min;
@@ -98,7 +98,13 @@ void	ft_print_chunk(t_chunk *chunk)
 		ft_printf("Chunk group: %u\t Min: %u\t Max: %u\n", act, min, max);
 		act++;
 	}
-	ft_printf("\n\033[1;35m ~ --------- ~\n");
+	act = s->len;
+	while (act--)
+	{
+		max = s->arr[act].value;
+		min = s->arr[act].g_chunk;
+		ft_printf("~ %u ~\tValue: %u\tChunk: %u\n", act, max, min);
+	}
 }
 
 void	ft_print_checker(t_stack *a, t_stack *b)
