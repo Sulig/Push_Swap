@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:58:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 14:31:10 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:48:37 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,31 @@
 
 static size_t	ft_decide_num_of_chunks(size_t len)
 {
-	if (len < 25)
+	if (len < 15)
 		return (2);
+	else if (len < 40)
+		return (4);
 	else if (len <= 100)
 		return (5);
-	else if (len >= 500)
+	else if (len <= 500)
 		return (11);
-	else
-		return (5);
+	else if (len > 500)
+		return (12);
+	return (5);
 }
 
 static void	ft_set_g_chunks(t_chunk *chunk, int max, int min)
 {
-	size_t	act;
 	size_t	sta_to_end;
 	size_t	end_to_sta;
 	size_t	sep_of;
 
-	act = 0;
-	chunk->act_chunk = 0;
 	sta_to_end = 0;
+	chunk->act_chunk = 0;
+	chunk->num_of_args = max;
 	end_to_sta = chunk->chunks - 1;
 	sep_of = max / chunk->chunks;
-	while (act < chunk->chunks)
+	while (sta_to_end < chunk->chunks)
 	{
 		chunk->g_chunks[end_to_sta].max = max;
 		chunk->g_chunks[sta_to_end].min = min;
@@ -44,7 +46,6 @@ static void	ft_set_g_chunks(t_chunk *chunk, int max, int min)
 		max -= sep_of;
 		sta_to_end++;
 		end_to_sta--;
-		act++;
 	}
 }
 
@@ -73,17 +74,28 @@ static void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
 	}
 }
 
-void	ft_pa_and_sort(t_stack *a, t_stack *b)
+static void	ft_pa_and_sort(t_stack *a, t_stack *b)
 {
-	size_t	i;
 	t_piece	to_push;
+	t_piece	bef;
 
 	while (b->len)
 	{
-		i = 0;
 		to_push = b->arr[ft_where_is(b, 0, '>')];
-		ft_in_first(b, to_push, 'b');
-		ft_pa(a, b);
+		bef = ft_need_swap(b);
+		if (bef.index < to_push.index && bef.ok)
+		{
+			ft_in_first(b, bef, 'b');
+			ft_pa(a, b);
+			ft_in_first(b, to_push, 'b');
+			ft_pa(a, b);
+			ft_sa(a);
+		}
+		else
+		{
+			ft_in_first(b, to_push, 'b');
+			ft_pa(a, b);
+		}
 	}
 }
 

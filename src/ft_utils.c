@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:49:52 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 16:00:19 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:21:45 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_is_sorted_inverse(t_stack *stack)
 	return (ok);
 }
 
-int	ft_where_is(t_stack *stack, int val, char c)
+size_t	ft_where_is(t_stack *stack, size_t index, char c)
 {
 	size_t	i;
 	size_t	pos;
@@ -76,7 +76,7 @@ int	ft_where_is(t_stack *stack, int val, char c)
 	pos = 0;
 	if (!c)
 	{
-		while (stack->arr[i].value != val)
+		while (stack->arr[i].index != index && i < stack->len)
 			i++;
 		return (i);
 	}

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 13:14:10 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:48:33 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_in_first(t_stack *s, t_piece first, char move)
 {
 	size_t	pos;
 
-	pos = ft_where_is(s, first.value, '\0');
+	pos = ft_where_is(s, first.index, '\0');
 	if (pos < ((s->len - 1) / 2))
 	{
 		while (s->arr[0].value != first.value)

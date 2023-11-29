@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:37:46 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 14:31:20 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/29 20:48:46 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_g_chunk
 typedef struct s_chunk
 {
 	size_t		chunks;
+	size_t		num_of_args;
 	size_t		act_chunk;
 	t_g_chunk	*g_chunks;
 }				t_chunk;
@@ -50,7 +51,7 @@ int		ft_check_double(char *joined);
 int		ft_is_null(t_stack *s);
 int		ft_is_sorted(t_stack *stack);
 int		ft_is_sorted_inverse(t_stack *stack);
-int		ft_where_is(t_stack *stack, int val, char c);
+size_t	ft_where_is(t_stack *stack, size_t index, char c);
 int		ft_can_sort_in_one(t_stack *s);
 
 void	ft_pa(t_stack *a, t_stack *b);
@@ -79,6 +80,7 @@ void	ft_big_sort(t_stack *a, t_stack *b);
 void	ft_switch_lenght(t_stack *a, t_stack *b);
 
 t_piece	ft_decide_to_push(t_stack *s, size_t num_1, size_t num_2);
+t_piece	ft_need_swap(t_stack *s);
 
 void	ft_free_stacks(t_stack *a, t_stack *b);
 int		ft_init(t_stack *a, t_stack *b, char *join);
