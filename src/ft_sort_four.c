@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 13:13:24 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/24 11:58:11 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:51:40 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	ft_sort_four(t_stack *a, t_stack *b)
 		ft_ra(a);
 	}
 	ft_pb(a, b);
-	ft_sort_tree(a);
+	ft_sort_three(a);
 	ft_pa(a, b);
 }

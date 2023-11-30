@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:14:49 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 20:48:28 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:32:57 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_piece	ft_decide_to_push(t_stack *s, size_t num_1, size_t num_2)
 	return (to_push);
 }
 
-t_piece	ft_need_swap(t_stack *s)
+t_piece	ft_need_swap_aft_pa(t_stack *s)
 {
 	t_piece	to_push;
 	size_t	max;
@@ -75,11 +75,11 @@ t_piece	ft_need_swap(t_stack *s)
 
 	bef = 0;
 	max = ft_where_is(s, 0, '>');
-	to_push	= s->arr[max];
+	to_push = s->arr[max];
 	if (s->len > 1)
 		bef = ft_where_is(s, to_push.index - 1, 0);
 	if (bef < s->len)
-	   to_push = ft_decide_to_push(s, max, bef);
+		to_push = ft_decide_to_push(s, max, bef);
 	if (to_push.index < s->arr[max].index)
 		to_push.ok = 1;
 	else

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:43:57 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/28 14:47:37 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:12:27 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_print_chunk(t_chunk *chunk, t_stack *s)
 	act = 0;
 	ft_printf("\033[1;35m\n ~ Chunks ~\n\n");
 	ft_printf("\033[1;37mNum of chunks: %u\t", chunk->chunks);
-	ft_printf("Act chunk: %u\n\n", chunk->act_chunk);
+	ft_printf("Act chunk: %u\n\n", chunk->act);
 	while (act < chunk->chunks)
 	{
 		min = chunk->g_chunks[act].min;

@@ -6,13 +6,13 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:24:08 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 20:48:33 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:51:28 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_sort_tree(t_stack *a)
+void	ft_sort_three(t_stack *a)
 {
 	size_t	min;
 	size_t	max;
@@ -85,7 +85,7 @@ void	ft_switch_lenght(t_stack *a, t_stack *b)
 	else if (a->len == 2)
 		ft_sa(a);
 	else if (a->len == 3)
-		ft_sort_tree(a);
+		ft_sort_three(a);
 	else if (ft_can_sort_in_one(a))
 		return ;
 	else if (a->len == 4)

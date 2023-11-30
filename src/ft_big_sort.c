@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:58:33 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 20:48:37 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:33:01 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@ static size_t	ft_decide_num_of_chunks(size_t len)
 {
 	if (len < 15)
 		return (2);
+	else if (len < 25)
+		return (3);
 	else if (len < 40)
 		return (4);
 	else if (len <= 100)
 		return (5);
+	else if (len <= 300)
+		return (8);
 	else if (len <= 500)
 		return (11);
 	else if (len > 500)
@@ -34,7 +38,7 @@ static void	ft_set_g_chunks(t_chunk *chunk, int max, int min)
 	size_t	sep_of;
 
 	sta_to_end = 0;
-	chunk->act_chunk = 0;
+	chunk->act = 0;
 	chunk->num_of_args = max;
 	end_to_sta = chunk->chunks - 1;
 	sep_of = max / chunk->chunks;
@@ -49,19 +53,19 @@ static void	ft_set_g_chunks(t_chunk *chunk, int max, int min)
 	}
 }
 
-static void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
+static void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk, int last)
 {
 	size_t	i;
 	size_t	j;
 	t_piece	to_push;
 
-	while (a->len)
+	while (chunk->act < chunk->chunks - last)
 	{
 		i = 0;
 		j = a->len - 1;
-		while (a->arr[i].g_chunk != chunk->act_chunk && i < a->len)
+		while (a->arr[i].g_chunk != chunk->act && i < a->len)
 			i++;
-		while (j && a->arr[j].g_chunk != chunk->act_chunk)
+		while (j && a->arr[j].g_chunk != chunk->act)
 			j--;
 		to_push = ft_decide_to_push(a, i, j);
 		if (to_push.ok)
@@ -70,7 +74,7 @@ static void	ft_pb_with_chunks(t_stack *a, t_stack *b, t_chunk *chunk)
 			ft_pb(a, b);
 		}
 		else
-			chunk->act_chunk++;
+			chunk->act++;
 	}
 }
 
@@ -82,7 +86,7 @@ static void	ft_pa_and_sort(t_stack *a, t_stack *b)
 	while (b->len)
 	{
 		to_push = b->arr[ft_where_is(b, 0, '>')];
-		bef = ft_need_swap(b);
+		bef = ft_need_swap_aft_pa(b);
 		if (bef.index < to_push.index && bef.ok)
 		{
 			ft_in_first(b, bef, 'b');
@@ -102,23 +106,23 @@ static void	ft_pa_and_sort(t_stack *a, t_stack *b)
 void	ft_big_sort(t_stack *a, t_stack *b)
 {
 	t_chunk	chunk;
-	t_piece	first;
-	int		max;
+	int		ff;
 
-	max = a->arr[ft_where_is(a, 0, '>')].index;
-	if (ft_is_prime(a->len))
-	{
-		first = a->arr[ft_where_is(a, 0, '<')];
-		ft_in_first(a, first, 'a');
-		ft_pb(a, b);
-	}
+	if (a->len >= 50)
+		ff = 1;
+	else
+		ff = 0;
 	chunk.chunks = ft_decide_num_of_chunks(a->len);
-	chunk.g_chunks = ft_calloc(sizeof(t_g_chunk), chunk.chunks);
+	chunk.g_chunks = ft_calloc(sizeof(t_g_chunk), chunk.chunks + ff);
 	if (!chunk.g_chunks)
 		return ;
-	ft_set_g_chunks(&chunk, max, 0);
+	ft_set_g_chunks(&chunk, a->len, 0);
 	ft_set_group_of_chunk(a, &chunk);
-	ft_pb_with_chunks(a, b, &chunk);
+	if (ff)
+		ft_set_last_five(a, &chunk);
+	ft_pb_with_chunks(a, b, &chunk, ff);
+	if (ff)
+		ft_sort_five(a, b);
 	ft_pa_and_sort(a, b);
 	free(chunk.g_chunks);
 }

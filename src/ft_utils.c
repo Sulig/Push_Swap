@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:49:52 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/29 19:21:45 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:30:00 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,27 @@ size_t	ft_where_is(t_stack *stack, size_t index, char c)
 		i++;
 	}
 	return (pos);
+}
+
+void	ft_set_last_five(t_stack *s, t_chunk *chunk)
+{
+	size_t	i;
+	size_t	last_five;
+
+	i = 0;
+	chunk->chunks++;
+	last_five = s->len - 5;
+	while (i < s->len)
+	{
+		if (s->arr[i].index >= last_five)
+		{
+			s->arr[i].last_five = 1;
+			s->arr[i].g_chunk++;
+		}
+		else
+			s->arr[i].last_five = 0;
+		i++;
+	}
+	chunk->g_chunks[chunk->chunks - 1].max = s->len - 1;
+	chunk->g_chunks[chunk->chunks - 1].min = last_five;
 }
