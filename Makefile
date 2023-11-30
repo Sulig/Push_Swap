@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/30 14:32:13 by sadoming         ###   ########.fr        #
+#    Updated: 2023/11/30 17:05:08 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ NAME = push_swap
 BONUS = checker
 
 DEF = 3 4 2 5 9 10
-
-DEF = 7 5 6 4 1 3 0 2
 # ------------------ #
 # Flags:
 
