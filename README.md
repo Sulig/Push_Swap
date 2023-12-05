@@ -1,6 +1,6 @@
 # Push_Swap
 
-~ Ended on 30/11 and Waiting for grade
+~ Ended on *Work in Progress*
 
 Resumen:
 Este proyecto te hará ordenar datos en un stack, con un conjunto limitado de
