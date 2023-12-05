@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:40:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/30 16:16:53 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:45:49 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int	main(int argc, char **args)
 	char	*join;
 
 	if (!ft_check_if_null_args(args, argc))
-	{
-		write(2, "Error\n", 6);
 		return (0);
-	}
 	join = ft_check_dimax(args);
 	if (join)
 	{

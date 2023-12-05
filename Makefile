@@ -6,7 +6,7 @@
 #    By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 17:07:32 by sadoming          #+#    #+#              #
-#    Updated: 2023/11/30 17:05:08 by sadoming         ###   ########.fr        #
+#    Updated: 2023/12/05 13:45:35 by sadoming         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 BONUS = checker
 
-DEF = 3 4 2 5 9 10
+DEF = 1 18446744073709551614
 # ------------------ #
 # Flags:
 
@@ -91,19 +91,12 @@ trueall:
 
 #-------------------------------------------------------------#
 norm:
-	@make -s norm -C $(LIBFT)
-	@echo "\n\033[1;93m~ Norminette:\n"
-	@norminette $(DIR)
+	@echo "\n\033[1;93m\n~ Norminette:\n"
+	@norminette
 	@echo "\n~~~~~~~~~~~~~~~~~~~~~~\n"
-	@norminette -R CheckForbiddenSourceHeader $(DIR)
+	@norminette -R CheckForbiddenSourceHeader
 	@echo "\033[1;32m\n ~ Norminette:\t~ OK\n"
 	@echo "~~~~~~~~~~~~~~~~~~~~~~\n"
-	@echo "\n\033[1;93m\n~ Norminette bonus:\n"
-	@norminette $(DIRB)
-	@echo "\n~~~~~~~~~~~~~~~~~~~~~~\n"
-	@norminette -R CheckForbiddenSourceHeader $(DIRB)
-	@echo "\033[1;32m\n ~ Norminette bonus:\t~ OK\n"
-
 #-------------------------------------------------------------#
 #-------------------------------------------------------------#
 run: $(NAME)
