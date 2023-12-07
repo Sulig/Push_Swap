@@ -1,6 +1,6 @@
 # Push_Swap
 
-~ Ended on 07/12 and Graded with: 115/100
+~ Started on: 07/11 ~ *** ~ Ended on 07/12 and Graded with: 115/100
 
 Resumen:
 Este proyecto te hará ordenar datos en un stack, con un conjunto limitado de
@@ -43,5 +43,5 @@ For more comands ejecute
     make help
 
 ***
-~ Made by sadoming ~ ~ Started on: 07/11
+~ Made by sadoming ~
 ***
