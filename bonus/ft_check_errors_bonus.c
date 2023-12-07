@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:52:13 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 18:41:08 by sadoming         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:34:43 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 int	ft_check_if_null_args(char **args, int argc)
 {
+	int		ok;
 	size_t	cnt;
 
+	ok = 1;
 	cnt = 1;
 	if (!args || argc <= 1)
 		return (0);
 	if (!args[cnt])
-		return (0);
+		ok = 0;
 	while (args[cnt])
 	{
 		if (!args[cnt][0])
-			return (0);
+			ok = 0;
 		cnt++;
 	}
-	return (1);
+	if (!ok)
+		write(2, "Error\n", 6);
+	return (ok);
 }
 
 static int	ft_is_acceptable(int c)
@@ -47,9 +51,7 @@ static int	ft_is_acceptable(int c)
 int	ft_check_digit(char *str)
 {
 	size_t	cnt;
-	size_t	nums;
 
-	nums = 0;
 	cnt = 0;
 	while (str[cnt])
 	{
@@ -72,17 +74,27 @@ int	ft_check_digit(char *str)
 int	ft_check_max(char **arr)
 {
 	size_t	cnt;
+	size_t	len;
+	size_t	i;
 	long	act;
 
 	cnt = 0;
 	while (arr[cnt])
 	{
-		act = ft_atol(arr[cnt]);
-		if (act < -2147483648 || act > 2147483647)
+		i = 0;
+		if (arr[cnt][i] == '-')
+			i++;
+		while (arr[cnt][i] && arr[cnt][i] == '0')
+			i++;
+		if (arr[cnt][i])
 		{
-			write(2, "Error\n", 6);
-			return (0);
+			len = ft_strlen(arr[cnt] + i);
+			if (len > 10)
+				return (0);
 		}
+		act = ft_atol(arr[cnt]);
+		if (act > 2147483647 || act < -2147483648)
+			return (0);
 		cnt++;
 	}
 	return (1);
