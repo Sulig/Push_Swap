@@ -1,6 +1,6 @@
 # Push_Swap
 
-~ Started on: 07/11 ~ *** ~ Ended on 07/12 ~~~ Graded with: 115/100
+~ Started on: 07/11/2023 ~ *** ~ Ended on 07/12/2023 ~~~ Graded with: 115/100
 
 Resumen:
 Este proyecto te hará ordenar datos en un stack, con un conjunto limitado de
