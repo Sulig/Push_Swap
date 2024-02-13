@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 17:52:22 by sadoming          #+#    #+#             */
-/*   Updated: 2024/02/12 17:05:35 by sadoming         ###   ########.fr       */
+/*   Created: 2023/05/05 15:19:23 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 16:37:27 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	cnt;
-	size_t	ln;
-	char	*sub;
+	unsigned char	*str;
+	unsigned char	*com;
+	size_t			cnt;
+	int				ascii;
 
-	ln = ft_strlen(s);
-	if (start > ln)
-		start = ln;
-	if (len >= ft_strlen(s + start))
-		len = ft_strlen(s) - start;
-	sub = malloc(len + 1);
-	if (sub == 0)
-		return (0);
+	str = (unsigned char *) s1;
+	com = (unsigned char *) s2;
+	ascii = 0;
 	cnt = 0;
-	while (cnt < len && s[start])
+	if (n > 0)
 	{
-		sub[cnt] = s[start];
-		start++;
-		cnt++;
+		n--;
+		while (cnt < n && (str[cnt] == com[cnt]))
+			cnt++;
+		ascii = str[cnt] - com[cnt];
 	}
-	sub[cnt] = '\0';
-	return (sub);
+	if (str[cnt] < 0 || com[cnt] < 0)
+		return (ascii * -1);
+	else
+		return (ascii);
 }

@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:40:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/12/05 13:45:49 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:06:02 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static char	*ft_arr_str_to_arr_chr(char **arr)
 	join = ft_strjoin_s(arr[1], join);
 	while (arr[cnt])
 	{
-		join = ft_strjoin_free_first(join, " ");
-		join = ft_strjoin_free_first(join, arr[cnt]);
+		join = ft_strjoin_free_fst(join, " ");
+		join = ft_strjoin_free_fst(join, arr[cnt]);
 		cnt++;
 	}
 	return (join);
@@ -80,6 +80,6 @@ int	main(int argc, char **args)
 		join = ft_free_str(join);
 	}
 	else
-		write(2, "Error\n", 6);
+		ft_printf_fd(2, "Error\n");
 	return (0);
 }

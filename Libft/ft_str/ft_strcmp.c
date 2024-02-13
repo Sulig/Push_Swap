@@ -6,11 +6,11 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 19:45:32 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 17:10:32 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:10:46 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /*
  * Compares str & cmp
@@ -33,7 +33,7 @@ int	my_strcmp(const char *str, const char *cmp)
 
 /*
  * Compares s1 & s2.
- * Return the diference of ascii c
+ * Return the diference of ascii char
  * Exemple: if s1 == s2 => 0
  * if s1[0] = 0 & s2[0] = 1 => -1 
 */

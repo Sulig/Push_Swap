@@ -6,11 +6,11 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 15:29:20 by sadoming          #+#    #+#             */
-/*   Updated: 2023/10/09 16:05:01 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:04:57 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 static char	*ft_strfill(const char *str, char *to_fill, size_t pos)
 {

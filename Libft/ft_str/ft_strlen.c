@@ -6,11 +6,11 @@
 /*   By: sadoming <sadoming@student.42barc...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:15:53 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/09 19:29:15 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:35:07 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 size_t	ft_arr_strlen(char **s)
 {

@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 17:52:22 by sadoming          #+#    #+#             */
-/*   Updated: 2024/02/12 17:05:35 by sadoming         ###   ########.fr       */
+/*   Created: 2023/05/09 17:30:06 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 16:36:08 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
 	size_t	cnt;
-	size_t	ln;
-	char	*sub;
+	char	*dest;
 
-	ln = ft_strlen(s);
-	if (start > ln)
-		start = ln;
-	if (len >= ft_strlen(s + start))
-		len = ft_strlen(s) - start;
-	sub = malloc(len + 1);
-	if (sub == 0)
-		return (0);
+	dest = (char *) s;
 	cnt = 0;
-	while (cnt < len && s[start])
+	while (cnt < n)
 	{
-		sub[cnt] = s[start];
-		start++;
+		dest[cnt] = '\0';
 		cnt++;
 	}
-	sub[cnt] = '\0';
-	return (sub);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*call;
+
+	call = malloc(count * size);
+	if (call == 0)
+		return (0);
+	ft_bzero(call, count * size);
+	return (call);
 }

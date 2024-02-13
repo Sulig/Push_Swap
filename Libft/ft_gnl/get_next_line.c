@@ -6,11 +6,11 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 17:06:43 by sadoming          #+#    #+#             */
-/*   Updated: 2023/09/29 17:44:41 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:48:46 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static char	*gnl_free(char *to_free, char *tmp)
 {
@@ -66,7 +66,7 @@ static char	*get_readed(int fd, char *store)
 		if (btrd > 0)
 		{
 			tmp[btrd] = '\0';
-			store = ft_strjoin_free_first(store, tmp);
+			store = ft_strjoin(store, tmp);
 			if (!store)
 				return (gnl_free(store, tmp));
 		}

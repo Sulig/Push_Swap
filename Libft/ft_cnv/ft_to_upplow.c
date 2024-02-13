@@ -1,34 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcut.c                                        :+:      :+:    :+:   */
+/*   ft_to_upplow.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 17:12:32 by sadoming          #+#    #+#             */
-/*   Updated: 2024/02/12 17:04:51 by sadoming         ###   ########.fr       */
+/*   Created: 2024/02/12 17:41:47 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 17:51:56 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_strcut(char *str, char cut, char mode, char inc)
+int	ft_toupper(int c)
 {
+	if (c >= 'a' && c <= 'z')
+		return (c -= 32);
+	else
+		return (c);
+}
+
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c += 32);
+	else
+		return (c);
+}
+
+char	*ft_toupper_all(char *str)
+{
+	size_t	i;
+
+	i = 0;
 	if (!str)
 		return (NULL);
-	if (mode == '<')
+	while (str[i])
 	{
-		if (inc == 'y' || inc == 'Y')
-			str[ft_cnttoch_in(str, cut)] = '\0';
-		else
-			str[ft_cnttoch_out(str, cut)] = '\0';
+		str[i] = ft_toupper(str[i]);
+		i++;
 	}
-	else if (mode == '>')
+	return (str);
+}
+
+char	*ft_tolower_all(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	if (!str)
+		return (NULL);
+	while (str[i])
 	{
-		if (inc == 'y' || inc == 'Y')
-			return (str + ft_cnttoch_out(str, cut));
-		else
-			return (str + ft_cnttoch_out(str, cut));
+		str[i] = ft_tolower(str[i]);
+		i++;
 	}
 	return (str);
 }

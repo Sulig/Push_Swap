@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 12:35:52 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/24 13:34:46 by sadoming         ###   ########.fr       */
+/*   Created: 2023/05/05 17:30:31 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 16:37:20 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int	ft_is_prime(size_t num)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	div;
+	unsigned char	*str;
+	size_t			pos;
 
-	div = 2;
-	while (div < num)
+	str = (unsigned char *) s;
+	pos = 0;
+	if (n == 0)
+		return (0);
+	while (pos < n -1)
 	{
-		if (!(num % div))
-			if (div != num)
-				return (0);
-		div++;
+		if (str[pos] == (unsigned char)c)
+			return (str + pos);
+		pos++;
 	}
-	return (1);
+	if (str[pos] == (unsigned char) c)
+		return (str + pos);
+	else
+		return (0);
 }

@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 17:30:06 by sadoming          #+#    #+#             */
-/*   Updated: 2023/09/21 17:33:09 by sadoming         ###   ########.fr       */
+/*   Created: 2023/08/21 16:35:01 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 19:05:19 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	cnt;
-	char	*dest;
+	t_list	*last;
 
-	dest = (char *) s;
-	cnt = 0;
-	while (cnt < n)
-	{
-		dest[cnt] = '\0';
-		cnt++;
-	}
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*call;
-
-	call = malloc(count * size);
-	if (call == 0)
-		return (0);
-	ft_bzero(call, count * size);
-	return (call);
+	last = ft_lstlast(*lst);
+	if (last == NULL && new)
+		*lst = new;
+	if (last && new)
+		last->next = new;
 }

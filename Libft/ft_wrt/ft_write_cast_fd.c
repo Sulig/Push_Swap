@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_switch_cast.c                                   :+:      :+:    :+:   */
+/*   ft_write_cast_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 18:47:28 by sadoming          #+#    #+#             */
-/*   Updated: 2023/09/27 20:27:08 by sadoming         ###   ########.fr       */
+/*   Created: 2024/02/12 18:55:07 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/13 13:50:15 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int	ft_putstr(char *str)
+int	ft_putchar_fd(char ch, int fd)
+{
+	int	ret;
+
+	ret = write(fd, &ch, 1);
+	return (ret);
+}
+
+int	ft_putstr_fd(char *str, int fd)
 {
 	int		ret;
 	int		cnt;
@@ -20,28 +28,28 @@ int	ft_putstr(char *str)
 	ret = 0;
 	cnt = -1;
 	if (str == NULL)
-		return (write(1, "(null)", 6));
+		return (write(fd, "(null)", 6));
 	while (str[++cnt])
 	{
-		if (write(1, &str[cnt], 1) == -1)
+		if (write(fd, &str[cnt], 1) == -1)
 			return (-1);
 		ret++;
 	}
 	return (ret);
 }
 
-int	ft_putnbr(int nbr)
+int	ft_putnbr_fd(int nbr, int fd)
 {
 	char	*str;
 	int		ret;
 
 	str = ft_itoa(nbr);
-	ret = ft_putstr(str);
+	ret = ft_putstr_fd(str, fd);
 	free(str);
 	return (ret);
 }
 
-int	ft_putunsig(size_t nbr, char cast)
+int	ft_putunsig_fd(size_t nbr, char cast, int fd)
 {
 	char	*str;
 	int		ret;
@@ -49,11 +57,11 @@ int	ft_putunsig(size_t nbr, char cast)
 
 	save = 0;
 	if (cast == 'p')
-		save = ft_putstr("0x");
+		save = ft_putstr_fd("0x", fd);
 	if (save == -1)
 		return (save);
 	str = ft_unsig_tobase(nbr, cast);
-	ret = ft_putstr(str);
+	ret = ft_putstr_fd(str, fd);
 	free(str);
 	if (ret == -1)
 		return (ret);

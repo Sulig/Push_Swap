@@ -6,20 +6,18 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 17:30:11 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/21 13:20:33 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:26:18 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
-void	ft_auto_free_all(char ***arr)
+void	*ft_free_str(char *str)
 {
-	if (!ft_arr_strlen(*arr))
-		if (*arr)
-			free(*arr);
-	if (ft_arr_strlen(*arr))
-		arr[0] = ft_auto_free_arr(*arr);
-	arr = NULL;
+	if (str)
+		free(str);
+	str = NULL;
+	return (NULL);
 }
 
 void	*ft_auto_free_arr(char **arr)
@@ -28,22 +26,10 @@ void	*ft_auto_free_arr(char **arr)
 
 	size = ft_arr_strlen(arr);
 	if (size)
-	{
 		while (size--)
-		{
-			if (arr[size])
-				free(arr[size]);
-			arr[size] = NULL;
-		}
+			arr[size] = ft_free_str(arr[size]);
+	if (arr)
 		free(arr);
-	}
 	arr = NULL;
-	return (NULL);
-}
-
-void	*ft_free_str(char *str)
-{
-	free(str);
-	str = NULL;
 	return (NULL);
 }

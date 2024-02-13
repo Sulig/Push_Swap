@@ -6,11 +6,11 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:40:59 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/17 13:24:12 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:17:58 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
 /*
  * Search the first ocurrence of c in s.

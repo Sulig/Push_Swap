@@ -6,11 +6,11 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:57:19 by sadoming          #+#    #+#             */
-/*   Updated: 2023/12/05 12:37:39 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:51:19 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 int	ft_atoi(const char *str)
 {

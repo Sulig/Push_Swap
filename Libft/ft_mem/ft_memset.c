@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 17:52:22 by sadoming          #+#    #+#             */
-/*   Updated: 2024/02/12 17:05:35 by sadoming         ###   ########.fr       */
+/*   Created: 2023/05/03 12:15:38 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 16:39:46 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	cnt;
-	size_t	ln;
-	char	*sub;
+	char	*dest;
+	size_t	counter;
 
-	ln = ft_strlen(s);
-	if (start > ln)
-		start = ln;
-	if (len >= ft_strlen(s + start))
-		len = ft_strlen(s) - start;
-	sub = malloc(len + 1);
-	if (sub == 0)
-		return (0);
-	cnt = 0;
-	while (cnt < len && s[start])
+	counter = 0;
+	dest = (char *) b;
+	while (counter < len)
 	{
-		sub[cnt] = s[start];
-		start++;
-		cnt++;
+		dest[counter] = c;
+		counter++;
 	}
-	sub[cnt] = '\0';
-	return (sub);
+	return (b);
 }

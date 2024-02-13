@@ -6,60 +6,29 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 20:16:49 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/07 19:14:42 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 20:17:54 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "../include/libft.h"
 
-static int	ft_cmp(const char *s, int c)
-{
-	int		pos;
-
-	pos = 0;
-	while (s[pos])
-	{
-		if ((unsigned char) s[pos] == (unsigned char) c)
-			return (0);
-		pos++;
-	}
-	return (1);
-}
-
-static char	*ft_dup(char *str, size_t len)
-{
-	char	*dup;
-	size_t	ln;
-
-	ln = 0;
-	while (str[ln] && ln < len)
-		ln++;
-	dup = malloc(ln + 1);
-	if (dup == 0)
-		return (0);
-	ln = 0;
-	while (str[ln] && ln < len)
-	{
-		dup[ln] = str[ln];
-		ln++;
-	}
-	dup[ln] = '\0';
-	return (dup);
-}
-
+/*
+ * Trim the *set off of s1
+ * Returns a new str with the result
+*/
 char	*ft_strtrim(const char *s1, const char *set)
 {
 	size_t	ln;
 	size_t	cnt;
 
 	if (s1[0] == '\0')
-		return (ft_dup("", 0));
+		return (ft_substr("", 0, 0));
 	if (set[0] == '\0')
-		return (ft_dup((char *)s1, 1000));
+		return (ft_substr(s1, 0, ft_strlen(s1)));
 	ln = 0;
 	while (s1[ln])
 	{
-		if (ft_cmp(set, s1[ln]) == 1)
+		if (!ft_strchr(set, s1[ln]))
 			break ;
 		ln++;
 	}
@@ -68,9 +37,9 @@ char	*ft_strtrim(const char *s1, const char *set)
 		cnt++;
 	while (cnt >= 0)
 	{
-		if (ft_cmp(set, s1[cnt]) == 1)
+		if (!ft_strchr(set, s1[cnt]))
 			break ;
 		cnt--;
 	}
-	return (ft_dup((char *) s1 + ln, (cnt + 1) - ln));
+	return (ft_substr(s1, ln, (cnt + 1) - ln));
 }

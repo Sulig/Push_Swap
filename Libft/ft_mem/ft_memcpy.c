@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 17:52:22 by sadoming          #+#    #+#             */
-/*   Updated: 2024/02/12 17:05:35 by sadoming         ###   ########.fr       */
+/*   Created: 2023/05/05 12:24:07 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/12 16:38:51 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	cnt;
-	size_t	ln;
-	char	*sub;
+	char	*des;
+	char	*str;
+	size_t	len;
 
-	ln = ft_strlen(s);
-	if (start > ln)
-		start = ln;
-	if (len >= ft_strlen(s + start))
-		len = ft_strlen(s) - start;
-	sub = malloc(len + 1);
-	if (sub == 0)
+	des = (char *) dst;
+	str = (char *) src;
+	len = 0;
+	if (src == 0 && dst == 0)
 		return (0);
-	cnt = 0;
-	while (cnt < len && s[start])
+	while (len < n)
 	{
-		sub[cnt] = s[start];
-		start++;
-		cnt++;
+		des[len] = str[len];
+		len++;
 	}
-	sub[cnt] = '\0';
-	return (sub);
+	return (dst);
 }

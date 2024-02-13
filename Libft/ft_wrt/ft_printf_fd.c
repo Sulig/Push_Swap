@@ -1,48 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 17:01:07 by sadoming          #+#    #+#             */
-/*   Updated: 2023/09/27 19:39:09 by sadoming         ###   ########.fr       */
+/*   Created: 2024/02/12 18:27:49 by sadoming          #+#    #+#             */
+/*   Updated: 2024/02/13 13:48:45 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int	ft_putchar(char ch)
-{
-	int	ret;
-
-	ret = write(1, &ch, 1);
-	return (ret);
-}
-
-static int	ft_switch(char cast, va_list args)
+static int	ft_switch_fd(int fd, char cast, va_list args)
 {
 	int		ret;
 
 	ret = 0;
 	if (cast == 'c')
-		ret += ft_putchar(va_arg(args, int));
+		ret += ft_putchar_fd(va_arg(args, int), fd);
 	else if (cast == 's')
-		ret += ft_putstr(va_arg(args, char *));
+		ret += ft_putstr_fd(va_arg(args, char *), fd);
 	else if (cast == 'p')
-		ret += ft_putunsig(va_arg(args, unsigned long), cast);
+		ret += ft_putunsig_fd(va_arg(args, unsigned long), cast, fd);
 	else if (cast == 'd' || cast == 'i')
-		ret += ft_putnbr(va_arg(args, int));
+		ret += ft_putnbr_fd(va_arg(args, int), fd);
 	else if (cast == 'u' || cast == 'x')
-		ret += ft_putunsig(va_arg(args, unsigned int), cast);
+		ret += ft_putunsig_fd(va_arg(args, unsigned int), cast, fd);
 	else if (cast == 'X')
-		ret += ft_putunsig(va_arg(args, unsigned int), cast);
+		ret += ft_putunsig_fd(va_arg(args, unsigned int), cast, fd);
 	else
-		ret += ft_putchar(cast);
+		ret += ft_putchar_fd(cast, fd);
 	return (ret);
 }
 
-int	ft_printf(char const *cast, ...)
+int	ft_printf_fd(int fd, char const *cast, ...)
 {
 	va_list	args;
 	int		cnt;
@@ -51,14 +43,17 @@ int	ft_printf(char const *cast, ...)
 	va_start(args, cast);
 	cnt = -1;
 	ret = 0;
-	while (cast[++cnt] && ret != -1)
+	if (fd >= 0)
 	{
-		if (cast[cnt] == '%')
-			ret += ft_switch(cast[++cnt], args);
-		else if (write(1, &cast[cnt], 1) != -1)
-			ret++;
-		else
-			return (-1);
+		while (cast[++cnt] && ret != -1)
+		{
+			if (cast[cnt] == '%')
+				ret += ft_switch_fd(fd, cast[++cnt], args);
+			else if (write(fd, &cast[cnt], 1) != -1)
+				ret++;
+			else
+				return (-1);
+		}
 	}
 	va_end(args);
 	return (ret);

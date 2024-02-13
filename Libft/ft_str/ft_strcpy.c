@@ -6,31 +6,11 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 19:07:49 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/15 20:19:18 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:14:08 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-
-char	**ft_strarrdup(char **to_copy)
-{
-	char	**copy;
-	size_t	cnt;
-
-	cnt = 0;
-	copy = ft_calloc(sizeof(char *), ft_arr_strlen(to_copy) + 1);
-	if (!copy)
-		return (NULL);
-	if (to_copy)
-	{
-		while (to_copy[cnt])
-		{
-			copy[cnt] = ft_strdup(to_copy[cnt]);
-			cnt++;
-		}
-	}
-	return (copy);
-}
+#include "../include/libft.h"
 
 char	*ft_strdup(const char *s1)
 {
@@ -71,4 +51,24 @@ char	*ft_strcpyl(const char *s1, size_t len)
 	}
 	cpy[len] = '\0';
 	return (cpy);
+}
+
+char	**ft_strarrdup(char **to_copy)
+{
+	char	**copy;
+	size_t	cnt;
+
+	cnt = 0;
+	copy = ft_calloc(sizeof(char *), ft_arr_strlen(to_copy) + 1);
+	if (!copy)
+		return (NULL);
+	if (to_copy)
+	{
+		while (to_copy[cnt])
+		{
+			copy[cnt] = ft_strdup(to_copy[cnt]);
+			cnt++;
+		}
+	}
+	return (copy);
 }

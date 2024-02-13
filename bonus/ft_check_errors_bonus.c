@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:52:13 by sadoming          #+#    #+#             */
-/*   Updated: 2023/12/07 17:34:43 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:19:39 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_check_if_null_args(char **args, int argc)
 		cnt++;
 	}
 	if (!ok)
-		write(2, "Error\n", 6);
+		ft_printf_fd(2, "Error\n");
 	return (ok);
 }
 
@@ -123,6 +123,6 @@ int	ft_check_double(char *joined)
 	}
 	stack = ft_auto_free_arr(stack);
 	if (!ok)
-		write(2, "Error\n", 6);
+		ft_printf_fd(2, "Error\n");
 	return (ok);
 }
