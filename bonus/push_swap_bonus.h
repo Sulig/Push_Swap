@@ -6,14 +6,14 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:41:43 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 16:19:19 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:47:19 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-# include "../Libft/libft.h"
+# include "../Libft/include/libft.h"
 
 typedef struct s_piece
 {
