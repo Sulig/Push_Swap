@@ -6,7 +6,7 @@
 /*   By: sadoming <sadoming@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:58:26 by sadoming          #+#    #+#             */
-/*   Updated: 2023/11/27 18:26:53 by sadoming         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:52:39 by sadoming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,13 @@ void	ft_do_while(t_stack *a, t_stack *b)
 	move = get_next_line(1);
 	while (move)
 	{
+		if (my_strcmp(move, "\n"))
+			break ;
 		if (!ft_switch_move(a, b, move))
 		{
 			write(2, "Error\n", 6);
 			free(move);
-			return ;
+			exit(1);
 		}
 		free(move);
 		move = get_next_line(1);
